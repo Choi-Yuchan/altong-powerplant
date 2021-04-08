@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import styled from 'styled-components';
+import TopNavi from './components/header/TopNavi';
+import Profile from './components/profile/Profile';
+import ListNav from './components/listNav/ListNav';
+import Alog from './routes/Alog';
+import Nest from './routes/Nest';
+import Activity from './routes/Activity';
+import Section from './routes/Section';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrap>
+      <TopNavi/>
+      <Profile/>
+      <ListNav/>
+      <Switch>
+        <Route exact path="/" component={Section}/>
+        <Route path="/alog" component={Alog}/>
+        <Route path="/nest" component={Nest}/>
+        <Route path="/activity" component={Activity}/>
+      </Switch>
+    </Wrap>
   );
 }
 
+const Wrap = styled.div`
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  max-width: 800px;
+  margin: 0 auto;
+`;
 export default App;
