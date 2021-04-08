@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import ActivityAnswer from './AcRight/ActivityAnswer';
-import ActivityQuestion from './AcRight/ActivityQuestion';
+import ActivityNest from './AcRight/ActivityNest';
+import ActivityAlog from './AcRight/ActivityAlog';
 
 function ActivityRight (props) {
     return (
         <Right>
             <ActivityAnswer Ans={props.Ans} ></ActivityAnswer>
-            <ActivityQuestion Rep={props.Rep}></ActivityQuestion>
+            <ActivityAlog Rep={props.Rep}></ActivityAlog>
+            <ActivityNest Nes={props.Nes}></ActivityNest>
         </Right>
     )
 }

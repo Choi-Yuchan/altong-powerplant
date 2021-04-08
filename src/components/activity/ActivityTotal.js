@@ -6,14 +6,15 @@ import ActivityRight from './AcTotal/ActivityRight';
 function ActivityTotal () {
 
     const Pro = "1,000,000";
-    const Ans = "8,000";
-    const Rep = "80,000";
+    const Ans = "876,520";
+    const Rep = "79,882";
+    const Nes = '43,598';
 
     return (
         <Total>
             <ActivityProfit Pro={Pro}></ActivityProfit>
             <Line></Line>
-            <ActivityRight Ans={Ans} Rep={Rep}></ActivityRight>
+            <ActivityRight Ans={Ans} Rep={Rep} Nes={Nes}></ActivityRight>
         </Total>
     );
 };
@@ -25,8 +26,9 @@ const Total = styled.div`
     border-radius:5px;
     box-shadow:4px 4px 6px 0 rgba(0, 0, 0, 0.1), -4px -4px 6px rgba(255, 255, 255, 0.7);
     display:flex;
+    align-items:center;
     position:relative;
-
+    
     @media all and (min-width:500px){
         width:85%;
         margin:0 auto;

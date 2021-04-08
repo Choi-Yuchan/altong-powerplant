@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function ActivityQuestion (props) {
+function ActivityAlog (props) {
     return (
         <Answer>
             <ActivityAnswerL></ActivityAnswerL>
@@ -12,7 +12,7 @@ function ActivityQuestion (props) {
 
 function ActivityAnswerL () {
     return (
-        <AnswerL>질문</AnswerL>
+        <AnswerL>알로그</AnswerL>
     )
 }
 
@@ -48,4 +48,4 @@ const Highlight = styled.span`
     color: #fd0031;
 `;
 
-export default ActivityQuestion;
+export default ActivityAlog;

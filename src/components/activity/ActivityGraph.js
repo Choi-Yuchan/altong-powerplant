@@ -59,7 +59,6 @@ function ActivityGraph() {
 const GraphDiv = styled.div`
     display:flex;
     width:100%;
-    height: 18vh;
     margin:0 auto;
     justify-content:center;
 

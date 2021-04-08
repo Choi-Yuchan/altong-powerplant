@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import ProfileImg from './profileimage/ProfileImg';
@@ -63,12 +63,12 @@ const ContentsBox = styled.div`
     }
 `;
 const Grade = styled.div`
-    padding: 0.5em 1em;
+    padding: 0.25em 1em;
     text-align: center;
     color: #fd0031;
     font-size: 0.5rem;
     border-radius: 15px;
-    border: 0.5px solid #fd0031;
+    border: 1px solid #fd0031;
     max-width: fit-content;
     margin-bottom:3px;
 `;
@@ -76,6 +76,7 @@ const Grade = styled.div`
 const UserBox =  styled.div`
     display:flex;
     align-items:center;
+    padding-top:0.5em;
 `;
 const UserCountry =styled.img`
     width: 20px;
@@ -87,13 +88,21 @@ const UserID = styled.h5`
     font-weight: bold;
     color: #707070;
     line-height: 1.3125;
+    @media (min-width:480px){
+        font-size: 1.25rem;
+    }
 `;
+
 
 const UserIntro = styled.p`
     padding:0.5rem 0; 
     font-size: 0.625rem;
     line-height: 1.5;
     color: #707070;
+
+    @media (min-width:480px){
+        font-size:0.875rem;
+    }
 `;
 
 const IconBox = styled.div`
@@ -138,10 +147,11 @@ const Profile = () => {
         ]
         return ID[id];
     } 
+    const intro = "강아지를 좋아하고 독서를 좋아하는 사람입니다. 소통해요 함께 ^^";
 
     return(
         <Section>
-            <ProfileBox bgcolor="#ffffb5">
+            <ProfileBox bgcolor="#fefefe">
                 <ProfileTop>
                     <Link to="/">
                         <EditIcon src={process.env.PUBLIC_URL + `/images/edit_icon.svg`} alt="설정 아이콘"/>
@@ -156,7 +166,7 @@ const Profile = () => {
                             <UserCountry src={process.env.PUBLIC_URL + `/images/nationalflag.png`}></UserCountry>
                             <UserID>{userID(0)}</UserID>
                         </UserBox>
-                        <UserIntro>강아지를 좋아하고 독서를 좋아하는 사람입니다. 소통해요 함께 ^^</UserIntro>
+                        <UserIntro>{intro}</UserIntro>
                     </ContentsBox>
                 </ProfileMid>
                 <ProfileBot>

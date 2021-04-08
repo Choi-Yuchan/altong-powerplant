@@ -36,7 +36,6 @@ const QMark = styled.p`
   font-weight:bold;
   font-size:1.875rem;
   color: #fd0031;
-  font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
 `;
 
 const YellowBox = styled.div`
@@ -104,16 +103,18 @@ const Time =styled.div`
 
 const View =styled.img`
   display:flex;
-  margin-right: 0.5rem;
-
+  margin-right: 0.25em;
 `;
 
 const Egg =styled.p`
   display:block;
   margin-left:1rem;
+  margin-right:0.25em;
   border: 0.7px solid #888;
   border-radius:50%;
-
+  width:10px;
+  height:10px;
+  text-align:center;
 `;
 
 const GlobalBox = styled.div`

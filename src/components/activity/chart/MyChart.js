@@ -16,22 +16,25 @@ function MyChart(props) {
                     endAngle={420}
                     data={props.data}
                     style={{ labels: {fontSize:0, fill: "transparent"}}}
-                />
+                />    
                 <ChartLabel>{props.title===true?"수익":"지출"}</ChartLabel>
             </ChartBox>
             <ChartData data={props.data}></ChartData>
         </ChartDiv>
     );
 }
+
 const ChartDiv = styled.div`
     width:50%;
     display:flex;
 `;
 const ChartBox = styled.div`
     width:50%;
+    height:100%;
     position:relative;
 `;
-const ChartLabel = styled.p`
+
+const ChartLabel = styled.div`
     position:absolute;
     top:50%;
     left:50%;

@@ -1,24 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function ActivityAnswer (props) {
+function ActivityNest (props) {
     return (
         <Answer>
             <ActivityAnswerL></ActivityAnswerL>
-            <ActivityAnswerR Ans={props.Ans}></ActivityAnswerR>
+            <ActivityAnswerR Nes={props.Nes}></ActivityAnswerR>
         </Answer>
     )
 }
 
 function ActivityAnswerL () {
     return (
-        <AnswerL>질문 / 답변</AnswerL>
+        <AnswerL>NEST</AnswerL>
     )
 }
 
 function ActivityAnswerR (props) {
     return (
-        <AnswerR><Highlight>{ props.Ans }</Highlight> 알</AnswerR>
+        <AnswerR><Highlight>{ props.Nes }</Highlight> 알</AnswerR>
     )
 }
 
@@ -49,4 +49,4 @@ const Highlight = styled.span`
     color: #fd0031;
 `;
 
-export default ActivityAnswer;
+export default ActivityNest;
