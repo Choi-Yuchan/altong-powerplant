@@ -14,8 +14,8 @@ function ActivityRight (props) {
     )
 }
 
-const Right = styled.div`
-    font-size:12px;
+const Right = styled.ul`
+    font-size:0.75rem;
     font-weight:bold;
     text-align:center;
     width:50%; height:100%;

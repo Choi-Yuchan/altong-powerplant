@@ -214,6 +214,8 @@ const TopcolumnBoxImg2 = styled.img`
     -webkit-tap-highlight-color: transparent;
 `;
 
+//윤주임이 제작한 TopNavi와 동일, 스타일만 일부 변경했습니다.
+
 function TopNavi() {
     return (
     <CenterDivContents>

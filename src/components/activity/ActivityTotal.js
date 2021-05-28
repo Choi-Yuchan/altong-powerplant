@@ -3,18 +3,13 @@ import styled from 'styled-components';
 import ActivityProfit from './AcTotal/ActivityProfit';
 import ActivityRight from './AcTotal/ActivityRight';
 
-function ActivityTotal () {
-
-    const Pro = "1,000,000";
-    const Ans = "876,520";
-    const Rep = "79,882";
-    const Nes = '43,598';
+function ActivityTotal ({gprofit, ansprofit, alogprofit, nestprofit}) {
 
     return (
         <Total>
-            <ActivityProfit Pro={Pro}></ActivityProfit>
+            <ActivityProfit Pro={gprofit}></ActivityProfit>
             <Line></Line>
-            <ActivityRight Ans={Ans} Rep={Rep} Nes={Nes}></ActivityRight>
+            <ActivityRight Ans={ansprofit} Rep={alogprofit} Nes={nestprofit}></ActivityRight>
         </Total>
     );
 };

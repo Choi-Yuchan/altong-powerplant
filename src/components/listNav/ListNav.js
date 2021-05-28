@@ -19,6 +19,7 @@ const NavList = styled.li`
     line-height: 50px;
     cursor : pointer;
     font-size: 0.875rem;
+    font-weight:bold;
     transition:0.3s;
 
     :active, :hover{
@@ -40,20 +41,29 @@ const Anchor = styled(Link)`
         color: #fd0031;
     }
 `;
+
+const langListNav = {
+    ko:{
+        //고정
+        listName:["질문/답변","알록달록","NEST","활동"]
+    }
+}
 const ListNav = () => {
+    const listName = langListNav.ko.listName;
+
     return(
         <NavGroup>
             <NavList> 
-                <Anchor to="/">질문/답변</Anchor>
+                <Anchor to="/">{listName[0]}</Anchor>
             </NavList>
             <NavList> 
-                <Anchor to="/alog">알로그</Anchor>
+                <Anchor to="/alog">{listName[1]}</Anchor>
             </NavList>
             <NavList> 
-                <Anchor to="/nest">NEST</Anchor>
+                <Anchor to="/nest">{listName[2]}</Anchor>
             </NavList>
             <NavList> 
-                <Anchor to="/activity">활동</Anchor>
+                <Anchor to="/activity">{listName[3]}</Anchor>
             </NavList>
         </NavGroup>
     );

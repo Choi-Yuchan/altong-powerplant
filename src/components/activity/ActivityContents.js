@@ -1,50 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
-import ActivityConL from './ActivityCon/ActivityConL';
-import ActivityConR from './ActivityCon/ActivityConR';
 
-function ActivityThanks () {
 
-    const subject = [
-        {
-            id: 1,
-            title: "감사알 지급 답변",
-            count: "313",
-            gun: "건 /",
-            title2: "감사알 지급율",
-            number: "20.3%"
-        },
-        {
-            id: 2,
-            title: "채택된 답변",
-            count: "578",
-            gun: "건 /",
-            title2: "답변 채택율",
-            number: "78.6%"
-        },
-        {
-            id: 3,
-            title: "추천수익",
-            count: "142,857.9",
-            gun: "",
-            title2: "알",
-            number: ""
-        }
-    ];
+function ActivityContents ({contents}) {
 
     return (
-        subject.map(function(contents){
+        contents.map(function(contents){
             return(
                 <Total key={contents.id}>
-                    <ActivityConL subject={contents}></ActivityConL>
+                    <ActivityConL>
+                        {contents.title }
+                    </ActivityConL>
                     <Line></Line>
-                    <ActivityConR subject={contents}></ActivityConR>
+                    <ActivityConR>
+                        {contents.count}
+                        {contents.gun}
+                        {contents.title2}
+                        {contents.number}
+                    </ActivityConR>
                 </Total>
             )
         })
-    );
-
-    
+    );   
 };
 
 const Total = styled.div`
@@ -69,6 +46,21 @@ const Line = styled.div`
     left:40%; top:50%;
     transform:translateY(-50%);
 `;
+const ActivityConL = styled.div`
+     width:40%; height:100%;
+     padding:1rem 0.2rem; 
+     text-align:center;
+     color:#707070; 
+     font-size:0.75rem;
 
+     
+    @media (min-width: 360px){
+        padding:1rem;
+    }
+`;
 
-export default ActivityThanks;
+const ActivityConR = styled(ActivityConL)`
+    width:60%;
+`;
+
+export default ActivityContents;

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import ProfileImg from './profileimage/ProfileImg';
 import VisitorBox from './visitorBox/VisitorBox';
+import AlogMessage from './AlogMessage';
+import HunPopup from './HunPopup';
 
 const Section = styled.section`
     width:100%;
@@ -17,7 +19,8 @@ const ProfileBox = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    background: ${props => props.bgcolor};
+    background: ${props => props.bgcolor} no-repeat center center;
+    background-size: cover;
     box-shadow: -3px -3px 6px #fff, 3px 3px 6px rgba(0,0,0,0.16);
     padding: 0.5rem 1.25rem 1.5rem 0.5rem;
     display:flex;
@@ -84,21 +87,23 @@ const UserCountry =styled.img`
 `;
 const UserID = styled.h5`
     padding: 0 0.5em;
-    font-size: 1rem;
+    font-size: 1.125rem;
     font-weight: bold;
     color: #707070;
     line-height: 1.3125;
     @media (min-width:480px){
-        font-size: 1.25rem;
+        font-size: 1.275rem;
     }
+
 `;
 
 
 const UserIntro = styled.p`
     padding:0.5rem 0; 
-    font-size: 0.625rem;
+    font-size: 0.75rem;
     line-height: 1.5;
     color: #707070;
+    word-break:keep-all;
 
     @media (min-width:480px){
         font-size:0.875rem;
@@ -120,10 +125,17 @@ const Icon = styled.img`
     };
 `;
 
-const Profile = () => {
-
-    const grade = (props) =>{
-        const LV = [
+const langProfile = {
+    ko:{
+        userData : [{
+            id:"Vivien",
+            intro:"강아지를 좋아하고 독서를 좋아하는 사람입니다. 소통해요 함께 ^^",
+            profileImg:`${process.env.PUBLIC_URL + '/images/profile-image.png'}`,
+            countToday:134,
+            countTotal:2487,
+        }],
+        //고정
+        LV : [
             "알천사",
             "나비천사",
             "미소천사",
@@ -135,46 +147,73 @@ const Profile = () => {
             "대천사",
             "대천사장",
             "알통폐인"
-    ]
-
-    return LV[props];
-    }
-
-
-    const userID = (id) => {
-        const ID = [
-            'Vivien', '시라소냥'
+        ],
+        bgColor : [
+            "#ffffff",
+            "#ffffb5",
+            "#ffd595",
+            "#ff9595",
+            "#fdb515",
+            "#dcff95",
+            "#effbff",
+            "#b3e5fc",
+            "#e1bee7",
+            "#ef9cfe",
+            "url('/images/Card.png')"
+        ],
+        altText : [
+            "설정 아이콘",
+            "멘토 추가 아이콘",
+            "훈훈알 아이콘",
+            "쪽지 아이콘",
         ]
-        return ID[id];
-    } 
-    const intro = "강아지를 좋아하고 독서를 좋아하는 사람입니다. 소통해요 함께 ^^";
+    },
+
+};
+
+const Profile = () => {
+    const grade = langProfile.ko.LV;
+    const bgColor = langProfile.ko.bgColor;
+    const userData = langProfile.ko.userData;
+    const altText = langProfile.ko.altText;
+    const [close, setClose] = useState(false);
+    const [hunAl,setHunAl] = useState(false);
+    const [show, setShow] = useState(true);
+
+    //알통 멘토 데이터와 연동해서 추가 되도록 해야합니다.
+    const addMento = () => {
+        console.log("멘토 추가!");
+    }
 
     return(
         <Section>
-            <ProfileBox bgcolor="#fefefe">
+            <ProfileBox bgcolor={bgColor[0]}>
                 <ProfileTop>
+                    {/* 알통 계정관리와 연동해야 합니다. */}
                     <Link to="/">
-                        <EditIcon src={process.env.PUBLIC_URL + `/images/edit_icon.svg`} alt="설정 아이콘"/>
+                        <EditIcon src={process.env.PUBLIC_URL + `/images/edit_icon.svg`} alt={altText[0]}/>
                     </Link>
-                    <VisitorBox today={134} total={2487}/>
+                    <VisitorBox today={userData[0].countToday} total={userData[0].countTotal}/>
                 </ProfileTop>
                 <ProfileMid>
-                    <ProfileImg/>
+                    <ProfileImg userImg={userData[0].profileImg}/>
                     <ContentsBox>
-                        <Grade >{grade(0)}</Grade>
+                        <Grade>{grade[0]}</Grade>
                         <UserBox>
                             <UserCountry src={process.env.PUBLIC_URL + `/images/nationalflag.png`}></UserCountry>
-                            <UserID>{userID(0)}</UserID>
+                            <UserID>{userData[0].id}</UserID>
                         </UserBox>
-                        <UserIntro>{intro}</UserIntro>
+                        <UserIntro>{userData[0].intro}</UserIntro>
                     </ContentsBox>
                 </ProfileMid>
                 <ProfileBot>
                     <IconBox>
-                            <Icon src={process.env.PUBLIC_URL + `/images/add-mento.svg`} alt="멘토 추가 아이콘"/>
-                            <Icon src={process.env.PUBLIC_URL + `/images/answer_almoney.svg`} alt="훈훈알 아이콘"/>
-                            <Icon src={process.env.PUBLIC_URL + `/images/message.svg`} alt="쪽지 아이콘"/>
+                            <Icon onClick={() => {setShow(false)}} src={show ? process.env.PUBLIC_URL + '/images/add-mento.svg' : process.env.PUBLIC_URL + '/images/added-mento.png'} alt={altText[1]}/> 
+                            <Icon onClick={() => {setHunAl(!hunAl)}} src={process.env.PUBLIC_URL + `/images/answer_almoney.svg`} alt={altText[2]}/>
+                            <Icon onClick={() => {setClose(!close)}} src={process.env.PUBLIC_URL + `/images/message.svg`} alt={altText[3]}/>
                     </IconBox>
+                    <AlogMessage close={close} setClose={setClose}/>
+                    <HunPopup hunAl={hunAl} setHunAl={setHunAl}/>
                 </ProfileBot>
             </ProfileBox>
         </Section>

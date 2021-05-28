@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-const BoxDiv = styled.section`
+const BoxDiv = styled(Link)`
   width: 90%;
   max-width: 800px;
   display: flex;
@@ -9,6 +10,15 @@ const BoxDiv = styled.section`
   justify-content: center;
   align-items:center;
   margin-top: 10px;
+  text-decoration:none;
+
+  :active {
+        outline:none;
+        box-shadow:4px 4px 10px 0 rgba(0, 0, 0, 0.1), 
+        -4px -4px 10px rgba(255, 255, 255, 0.7), 
+        4px 4px 10px 0 rgba(0, 0, 0, 0.1) inset,
+        -4px -4px 10px rgba(255,255,255,0.7) inset;
+    }
 `;
 
 const QBox = styled.div`
@@ -58,13 +68,13 @@ const YellowBox = styled.div`
 
 const Question = styled.p`
   display:flex;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: bold;
-  margin-left: 1rem;
+  margin-left:0.5rem;
   box-sizing: border-box;
   text-overflow: ellipsis;
-  @media (max-width:340px){
-    margin-left:0.5rem;
+  @media (min-width:340px){
+    margin-left: 1rem;
   }
 `;
 
@@ -84,14 +94,14 @@ const TxtTop = styled.div`
 const TxtMid = styled.div`
   display:flex;
   margin:0.75rem 0 0.875rem;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight:600;
   color:#707070;
 `;
 
 const TxtBtm = styled.div`
   display:flex;
-  font-size:0.625rem;
+  font-size:0.75rem;
   color:#707070;
 `;
 
@@ -106,14 +116,15 @@ const View =styled.img`
   margin-right: 0.25em;
 `;
 
-const Egg =styled.p`
+const Answer = styled.p`
   display:block;
   margin-left:1rem;
   margin-right:0.25em;
   border: 0.7px solid #888;
   border-radius:50%;
-  width:10px;
-  height:10px;
+  width:0.75rem;
+  height:0.75rem;
+  line-height:0.625rem;
   text-align:center;
 `;
 
@@ -122,36 +133,38 @@ const GlobalBox = styled.div`
 `;
 
 
-function Box(props) {
+function Box({con, time}) {
   const [show, setShow] = useState(true);
 
   return (
-    <BoxDiv>
+    <BoxDiv to="/">
         <QBox>
           <Txt>
             <TxtTop>
               <QMark>Q</QMark>
               <YellowBox>
-               {props.con.yellow}
+               {con.value}
               </YellowBox>
               <Question>
-                {props.con.big}
+                {con.big}
               </Question>
             </TxtTop>
             <TxtMid>
-              {props.con.sub}
+              {con.sub}
             </TxtMid>
             <TxtBtm>
               <Time>
-                {props.con.hour}시간 전
+                {con.hour}{time}
               </Time>
               <View src={process.env.PUBLIC_URL + '/images/icon_view.svg'}/>
-              {props.con.look}
-              <Egg>A</Egg>
-              {props.con.hun}
+              {con.look}
+              <Answer>A</Answer>
+              {con.answer}
             </TxtBtm>
           </Txt>
-          <GlobalBox onClick={() => setShow(!show) } >
+          <GlobalBox onClick={(e) => {
+            e.nativeEvent.stopImmediatePropagation();
+            setShow(!show);} } >
             <ShowS show={show} src={process.env.PUBLIC_URL + '/images/language.svg'} />
           </GlobalBox>
         </QBox>

@@ -1,6 +1,14 @@
 import React from 'react';
 import NestContain from '../components/nest/NestContain';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+const langNest = {
+  ko:{
+    //고정
+    guide:"지금은 서비스 준비중입니다.",
+  }
+}
 
 const nestList = [
     {
@@ -80,11 +88,14 @@ const nestList = [
   
   
   function Nest() {
+    const guideText = langNest.ko.guide;
+    
     return (
       <NestWrap>
-        <NestContain open={true} nestList={nestList} />
-        <NestContain open={false} nestList={nestList2} />
-        <NestLink>NEST 홈으로 바로가기</NestLink>
+          <Mask>{guideText}</Mask>
+          {/* <NestContain open={true} nestList={nestList} />
+          <NestContain open={false} nestList={nestList2} />
+          <NestLink to="/">NEST 홈으로 바로가기</NestLink> */}
       </NestWrap>
     );
   }
@@ -95,15 +106,27 @@ const nestList = [
     margin:0 auto;
   `;
 
-  const NestLink = styled.a`
-    font-size:0.5rem;
+  const Mask = styled.div`
+    width:100%;
+    /* height:100vh; */
+    background-color:#fefefe;
+    margin-top:1rem;
+    padding-top:50%;
+    font-weight:bold;
+    font-size:1.25rem;
+    text-align:center;
+    z-index:2;
+  `;
+  
+  const NestLink = styled(Link)`
+    text-decoration:none;
+    font-size:0.625rem;
     display:block;
     color:#999;
     cursor:pointer;
     text-align:right;
-    margin-top:-20px;
-    position:relative;
-    z-index:2;
+    margin:0 1rem 2rem 0;
+
 `;
   
   export default Nest;

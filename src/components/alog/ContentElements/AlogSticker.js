@@ -19,8 +19,16 @@ const AlogSticker1 = styled.img`
     width:43px;
     height:43px;
     position:absolute;
-    left:-15px; top:-20px; 
+    left:-6px; top:-23px; 
     z-index:100;
+
+    @media all and (min-width:800px){
+        width:60px;
+        height:60px;
+        position:absolute;
+        left:-15px; top:-40px; 
+        z-index:100; 
+    }
 `;
 
 export default AlogSticker;

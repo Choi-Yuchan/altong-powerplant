@@ -18,10 +18,10 @@ const ProfileImage = styled.img`
     height: 100%;
 `;
 
-const ProfileImg = () => {
+const ProfileImg = ({userImg}) => {
     return(
         <ImageBox>
-            <ProfileImage src={process.env.PUBLIC_URL + `/images/20210312_163030.png`}></ProfileImage>
+            <ProfileImage src={userImg}></ProfileImage>
         </ImageBox>
     );
 }

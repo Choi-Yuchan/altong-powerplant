@@ -66,8 +66,7 @@ const NestDiv = styled.div`
 `;
 
 const NestTitle = styled.span`
-    display:inline-block;
-    font-size:0.75rem;
+    font-size:0.875rem;
     font-weight:bold;
     color:#707070;
     margin-left:0.5rem;

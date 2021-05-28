@@ -3,21 +3,29 @@ import styled from 'styled-components';
 
 function AlogBack (props) {
     return (
-        <AlogBack1 backgrounds={props.backgrounds}>
+        <AlogBack1 background={process.env.PUBLIC_URL + '/images/' + props.background} backgroundColor={props.backgroundColor}>
             <By writer={props.writer}></By>
         </AlogBack1>
     );
 };
 const AlogBack1 = styled.div `
     width:100%;
-    height:55%;
-    background: ${ (props) => props.backgrounds };
-    border-radius:0 0 5px 5px;
+    height:56%;
+    background-color:${props => props.backgroundColor};
+    background-image:url(${props => props.background});
+    background-position: center center;
+    background-size: cover;
     padding-top:22px;
     box-sizing:border-box;
+
+    @media all and (max-width:490px) {
+        height:54%;
+    }
+    @media all and (min-width:800px) {
+        padding-top:52px;
+    }
 `;
 
-let writer = "흰둥이";
 
 function By (props) {
     return(
@@ -29,6 +37,10 @@ const Write = styled.p `
     font-size:6px;
     text-align:center;
     color:#fff;
+
+    @media all and (min-width:800px){
+        font-size:1rem;
+    }
 `;
 export default AlogBack;
 

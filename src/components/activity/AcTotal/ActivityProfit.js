@@ -1,11 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const langActivityProfit = {
+    ko:{
+        text:"총수익",
+        al:"알",
+    }
+}
 function ActivityProfit (props) {
+    const profitText = langActivityProfit.ko.text;
+    const al = langActivityProfit.ko.al;
+
     return (
         <Profit>
-            <Updown>총수익</Updown>
-            <Updown><span>{props.Pro}</span> 알</Updown>
+            <Updown>{profitText}</Updown>
+            <Updown><span>{props.Pro}</span> {al}</Updown>
         </Profit>
     )
 }

@@ -18,8 +18,6 @@ const AlogWord1 = styled.div `
     border-radius:5px 5px 0 0 ;
 `;
 
-let 인생 = "내 인생의 잊지 못할 그 곳들 저는 김인구입니다";
-
 function AlogSentence (props) {
     return(
         <Title>{ props.title }</Title>
@@ -42,5 +40,10 @@ const Title = styled.div `
     @media all and (min-width:650px){
        margin: 10px auto 0%; 
     }
+    @media all and (min-width:800px){
+        font-size:1rem;
+        height:35px;
+    }
+
 `;
 export default AlogWord;

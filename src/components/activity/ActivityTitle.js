@@ -1,20 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-function ActivityTitle () {
-
-    const [id,id변경] = useState('Vivien');
-    const 질문 = '4,069';
-    const 답변 = '1,000';
+const langActivityTitle = {
+    ko:{
+        //고정
+        titleText:"님의 통계",
+        queRank:"질문",
+        ansRank:"답변",
+        wu:"위",
+    }
+}
+function ActivityTitle ({id, question, answer}) {
+    const titleText = langActivityTitle.ko.titleText;
+    const queRank = langActivityTitle.ko.queRank;
+    const ansRank = langActivityTitle.ko.ansRank;
+    const wu = langActivityTitle.ko.wu;
 
     return (
         <TitleOption>
             <IDContainer>
-                <span>{ id }</span>님의 통계
+                <span>{ id }</span>{titleText}
             </IDContainer>
             <Rank>
-                <span>질문 <span>{ 질문 }</span>위</span>
-                <Rank2>답변 <span>{ 답변 }</span>위</Rank2>
+                <span>{queRank} <span>{ question }</span>{wu}</span>
+                <Rank2>{ansRank} <span>{ answer}</span>{wu}</Rank2>
             </Rank>
         </TitleOption>
     );

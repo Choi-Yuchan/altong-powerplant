@@ -1,31 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 function ActivityNest (props) {
     return (
-        <Answer>
-            <ActivityAnswerL></ActivityAnswerL>
-            <ActivityAnswerR Nes={props.Nes}></ActivityAnswerR>
+        <Answer to="/activity/nest">
+            <AnswerL>NEST</AnswerL>
+            <AnswerR><Highlight>{ props.Nes }</Highlight> 알</AnswerR>
         </Answer>
     )
 }
 
-function ActivityAnswerL () {
-    return (
-        <AnswerL>NEST</AnswerL>
-    )
-}
-
-function ActivityAnswerR (props) {
-    return (
-        <AnswerR><Highlight>{ props.Nes }</Highlight> 알</AnswerR>
-    )
-}
-
-const Answer = styled.div`
+const Answer = styled(Link)`
+    text-decoration:none;
     width:100%; height:50%;
     line-height:31px;
-    display:flex;
+    display:none;
 `;
 
 const AnswerL = styled.div`

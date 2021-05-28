@@ -10,6 +10,7 @@ import Section from './routes/Section';
 import { Font } from './style/Font';
 
 function App() {
+
   return (
     <Wrap>
       <Font/>
@@ -32,5 +33,8 @@ const Wrap = styled.div`
   align-items:center;
   max-width: 800px;
   margin: 0 auto;
+  ::-webkit-scrollbar{
+    display:none;
+  }
 `;
 export default App;

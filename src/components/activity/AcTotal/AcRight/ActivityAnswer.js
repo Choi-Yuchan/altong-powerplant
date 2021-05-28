@@ -1,28 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+const langActivityAnswer = {
+    ko:{
+        //고정
+        text:"질문 / 답변",
+        al:"알"
+    }
+}
 
 function ActivityAnswer (props) {
+    const text = langActivityAnswer.ko.text;
+    const al = langActivityAnswer.ko.al;
+
     return (
-        <Answer>
-            <ActivityAnswerL></ActivityAnswerL>
-            <ActivityAnswerR Ans={props.Ans}></ActivityAnswerR>
+        <Answer to="/activity">
+            <AnswerL>{text}</AnswerL>
+            <AnswerR><Highlight>{ props.Ans }</Highlight> {al}</AnswerR>
         </Answer>
     )
 }
 
-function ActivityAnswerL () {
-    return (
-        <AnswerL>질문 / 답변</AnswerL>
-    )
-}
-
-function ActivityAnswerR (props) {
-    return (
-        <AnswerR><Highlight>{ props.Ans }</Highlight> 알</AnswerR>
-    )
-}
-
-const Answer = styled.div`
+const Answer = styled(Link)`
+    text-decoration:none;
     width:100%; height:50%;
     line-height:31px;
     display:flex;

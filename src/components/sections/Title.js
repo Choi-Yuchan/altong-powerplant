@@ -25,6 +25,9 @@ const Left = styled.h3`
 
 const Right = styled.nav`
     display:flex;
+    width: 100px;
+    height:30px;
+
     align-items:center;
     justify-content:space-around;
     background-color:#F5F5F5;
@@ -33,9 +36,9 @@ const Right = styled.nav`
 `;
 
 const DropdownBox = styled.ul`
-    height:30px;
+    width: 100px; height:30px;
     background-color:#F5F5F5;
-    font-size:0.625rem;
+    font-size:0.75rem;
     font-weight:bold;
     border:none;
     z-index:2;
@@ -49,10 +52,10 @@ const ShowBox = styled(DropdownBox)`
 const DropList = styled.li`
     display:flex;
     align-items:center;
+    justify-content:center;
     background-color:#F5F5F5;
     padding: 0.625rem 1rem;
-    font-size:0.625rem;
-    font-weight:bold;
+
     :hover{
         background-color:#bebebe;
     }
@@ -65,6 +68,11 @@ const Triangle = styled.div`
     border-top-color:#FE607E;
 `;
 
+const langTitle = {
+    ko:{
+        droplist: ["조회순","최신순","훈훈알순","감사알순"],
+    }
+}
 
 function Title(props) {
     const [isShow, setShow] = useState(false);
@@ -73,20 +81,25 @@ function Title(props) {
         setShow(!isShow);
     }
 
+    const droplist = langTitle.ko.droplist;
+
+    const [name, changeName] = useState(0);
+
     return (
         <TopDiv>
             <Top>
                 <Left>{props.title}</Left>
+                {/* 해당 항목을 선택하면 그 항목이 선택된 것으로 보여야 합니다.*/}
                 <Right onClick={showMenu}>
                     {isShow ? 
                     <DropdownBox>
-                        <DropList>조회순</DropList>
-                        <DropList>최신순</DropList>
-                        <DropList>훈훈알순</DropList>
-                        <DropList>감사알순</DropList>
+                        <DropList onClick={ ()=>{ changeName(0); } }>{droplist[0]}</DropList>
+                        <DropList onClick={ ()=>{ changeName(1); } }>{droplist[1]}</DropList>
+                        <DropList onClick={ ()=>{ changeName(2); } }>{droplist[2]}</DropList>
+                        <DropList onClick={ ()=>{ changeName(3); } }>{droplist[3]}</DropList>
                     </DropdownBox> : 
                     <ShowBox>
-                        <DropList>조회순<Triangle/></DropList>
+                        <TabContent name = {name} droplist = { droplist }/>
                     </ShowBox>
                     }
                 </Right>
@@ -94,5 +107,19 @@ function Title(props) {
       </TopDiv>
     );
 };
+
+function TabContent(props){
+    if (props.name === 0){
+      return <DropList>{props.droplist[0]}<Triangle/></DropList>
+    } else if (props.name === 1){
+      return <DropList>{props.droplist[1]}<Triangle/></DropList>
+    } else if (props.name === 2){
+      return <DropList>{props.droplist[2]}<Triangle/></DropList>
+    } else if (props.name === 3){ 
+      return <DropList>{props.droplist[3]}<Triangle/></DropList>
+    } else { 
+        return <DropList>{props.droplist[0]}<Triangle/></DropList>
+      }
+}
 
 export default Title;
