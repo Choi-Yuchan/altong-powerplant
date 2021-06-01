@@ -13,7 +13,7 @@ function ActivityDivide ({ open, reply }) {
             <Reply>
                 <Op>댓글</Op>
                 <Line></Line>
-                <Count><Highlight>{reply}</Highlight>건</Count>
+                <Count><Highlight href="http://www.altong.com">{reply}</Highlight>건</Count>
             </Reply>
         </Total>
     );
@@ -66,7 +66,8 @@ const Line = styled.div`
     transform:translateY(-50%);
 `;
 
-const Highlight = styled.span`
+const Highlight = styled.a`
     color: #fd0031;
+    text-decoration:none;
 `;
 export default ActivityDivide;

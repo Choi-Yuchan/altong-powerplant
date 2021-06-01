@@ -3,44 +3,47 @@ import Title from '../components/sections/Title';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-
 const langSection = {
     ko:{
         con1 : [
-            // {
-            //     value:"100",
-            //     big:"지구는 왜 둥글까요?",
-            //     sub:"둥글면 얼마나 둥근가요?",
-            //     hour:"3",
-            //     look:"10",
-            //     answer:"10"
-            // },
-            // {
-            //     value:"200",
-            //     big:"인구는 왜 둥글까요?",
-            //     sub:"얼마나 안둥글면 얼마나 둥근가요?",
-            //     hour:"30",
-            //     look:"110",
-            //     answer:"20"
-            // }
+            {
+                value:"100",
+                big:"지구는 왜 둥글까요?",
+                sub:"둥글면 얼마나 둥근가요?",
+                hour:"3",
+                look:"10",
+                answer:"10",
+                hun:""
+            },
+            {
+                value:"200",
+                big:"인구는 왜 둥글까요?",
+                sub:"얼마나 안둥글면 얼마나 둥근가요?",
+                hour:"30",
+                look:"110",
+                answer:"20",
+                hun:""
+            }
         ],
         con2 : [
-            // {
-            //     value:"300",
-            //     big:"당구는 왜 둥글까요?",
-            //     sub:"안둥글면 얼마나 둥근가요?",
-            //     hour:"23",
-            //     look:"30",
-            //     answer:"1/2"
-            // },
-            // {
-            //     value:"400",
-            //     big:"축구는 왜 둥글까요?",
-            //     sub:"둥글둥글면 얼마나 둥근가요?",
-            //     hour:"13",
-            //     look:"20",
-            //     answer:"1/4"
-            // }
+            {
+                value:"300",
+                big:"당구는 왜 둥글까요?",
+                sub:"안둥글면 얼마나 둥근가요?",
+                hour:"23",
+                look:"30",
+                answer:"1/2",
+                hun:""
+            },
+            {
+                value:"400",
+                big:"축구는 왜 둥글까요?",
+                sub:"둥글둥글면 얼마나 둥근가요?",
+                hour:"13",
+                look:"20",
+                answer:"1/4",
+                hun:""
+            }
         ],
         //고정
         title : ["질문","답변"],
@@ -59,7 +62,7 @@ function Section () {
 
     return(
         <>
-            <Title title = { title[0] }/>
+            <Title title = { title[0] } />
             { con1.length === 0 || con1.length === 1 
                 ?
                 <>

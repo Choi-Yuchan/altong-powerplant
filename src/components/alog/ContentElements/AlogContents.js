@@ -5,7 +5,7 @@ import AlogConOptionIn from './AlogConOptionIn';
 
 function ShowShadow(props){
     if(props.shadow === true){
-        return <Shadow></Shadow>
+        return <Shadow href={props.href}></Shadow>
     }
     return <></>
     
@@ -14,7 +14,7 @@ function ShowShadow(props){
 function AlogContents (props) {
     return (
         <AlogConOption>
-            <ShowShadow shadow={props.shadow}></ShowShadow>
+            <ShowShadow shadow={props.shadow} ></ShowShadow>
             <AlogConOptionIn title={props.title} writer={props.writer} circle={props.circle} sticker={props.sticker} background={props.background} backgroundColor={props.backgroundColor}/>
         </AlogConOption>
     );
@@ -60,7 +60,7 @@ const AlogConOption = styled.div`
     }
 `;
 
-const Shadow = styled.div `
+const Shadow = styled.a`
     width:100%; height:100%;
     background:rgba(0, 0, 0, .5);
     position:absolute;
