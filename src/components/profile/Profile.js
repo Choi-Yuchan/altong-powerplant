@@ -207,6 +207,24 @@ const Profile = () => {
     const handleShow = () => {
         setShow(!show)
     }
+    // 로그인 상태
+    const user = {
+        seq: 10000000,
+        nick: "homan", // 같은유저, 로그인상태, 로그아웃상태
+        lv: 2
+    };
+    //나의 증정 가능한 알머니
+    const [myAlmoney, setMyAlomoney] = useState(30000);
+    //로그인 유무
+    const userLogin = (props) => {
+        if ( props === "") {
+            alert("로그인 후 이용할 수 있습니다.");
+        } else if ( props === userData[0].id) {
+            alert("본인에게는 훈훈알을 지급할 수 없습니다.");
+        } else {
+            setHunAl(true);
+        }
+    }
 
     //업데이트해야하는 멘토 데이터에 대해 수정 필요
     const addMento = async () => {
@@ -251,11 +269,15 @@ const Profile = () => {
                 <ProfileBot>
                     <IconBox>
                             <Icon onClick={addMento} src={show ? process.env.PUBLIC_URL + '/images/add-mento.svg' : process.env.PUBLIC_URL + '/images/added-mento.png'} alt={altText[1]}/> 
-                            <Icon onClick={() => {setHunAl(!hunAl)}} src={process.env.PUBLIC_URL + `/images/answer_almoney.svg`} alt={altText[2]}/>
+                            <Icon onClick={() => {userLogin(user.nick)}} src={process.env.PUBLIC_URL + `/images/answer_almoney.svg`} alt={altText[2]}/>
                             <Icon onClick={() => {setClose(!close)}} src={process.env.PUBLIC_URL + `/images/message.svg`} alt={altText[3]}/>
                     </IconBox>
                     <AlogMessage close={close} setClose={setClose}/>
-                    <HunPopup hunAl={hunAl} setHunAl={setHunAl}/>
+                    <HunPopup 
+                        hunAl={hunAl} 
+                        setHunAl={setHunAl} 
+                        myAlmoney={myAlmoney} setMyAlomoney={setMyAlomoney}
+                    />
                 </ProfileBot>
             </ProfileBox>
         </Section>
