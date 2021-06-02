@@ -2,53 +2,83 @@ import Box from '../components/sections/Box';
 import Title from '../components/sections/Title';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useState } from 'react';
 
 
 const langSection = {
     ko:{
         con1 : [
-            // {
-            //     value:"100",
-            //     big:"지구는 왜 둥글까요?",
-            //     sub:"둥글면 얼마나 둥근가요?",
-            //     hour:"3",
-            //     look:"10",
-            //     answer:"10"
-            // },
-            // {
-            //     value:"200",
-            //     big:"인구는 왜 둥글까요?",
-            //     sub:"얼마나 안둥글면 얼마나 둥근가요?",
-            //     hour:"30",
-            //     look:"110",
-            //     answer:"20"
-            // }
+            {
+                value:"100",
+                big:"지구는 왜 둥글까요?",
+                sub:"둥글면 얼마나 둥근가요?",
+                hour:"3",
+                look:"1000",
+                answer:"10",
+                hun:"100000"
+            },
+            {
+                value:"1000",
+                big:"인구는 왜 둥글까요? 인구는 왜 둥글까요?",
+                sub:"얼마나 안둥글면 얼마나 둥근가요?",
+                hour:"30",
+                look:"110",
+                answer:"20",
+                hun:"10100"
+            },
+            {
+                value:"1500",
+                big:"인구는 왜 둥글까요? 인구는 왜 둥글까요?",
+                sub:"얼마나 안둥글면 얼마나 둥근가요?",
+                hour:"30",
+                look:"2110",
+                answer:"20",
+                hun:"6000"
+            },
+            {
+                value:"1020",
+                big:"인구는 왜 둥글까요?",
+                sub:"얼마나 안둥글면 얼마나 둥근가요?",
+                hour:"30",
+                look:"1010",
+                answer:"20",
+                hun:"8784"
+            },
+            {
+                value:"1700",
+                big:"인구는 왜 둥글까요?",
+                sub:"얼마나 안둥글면 얼마나 둥근가요?",
+                hour:"30",
+                look:"1100",
+                answer:"20",
+                hun:"45465"
+            }
         ],
         con2 : [
-            // {
-            //     value:"300",
-            //     big:"당구는 왜 둥글까요?",
-            //     sub:"안둥글면 얼마나 둥근가요?",
-            //     hour:"23",
-            //     look:"30",
-            //     answer:"1/2"
-            // },
-            // {
-            //     value:"400",
-            //     big:"축구는 왜 둥글까요?",
-            //     sub:"둥글둥글면 얼마나 둥근가요?",
-            //     hour:"13",
-            //     look:"20",
-            //     answer:"1/4"
-            // }
+            {
+                value:"300",
+                big:"당구는 왜 둥글까요?",
+                sub:"안둥글면 얼마나 둥근가요?",
+                hour:"23",
+                look:"30",
+                answer:"1/2",
+                hun:"10000"
+            },
+            {
+                value:"400",
+                big:"축구는 왜 둥글까요?",
+                sub:"둥글둥글면 얼마나 둥근가요?",
+                hour:"13",
+                look:"20",
+                answer:"1/4",
+                hun:"30000"
+            }
         ],
         //고정
         title : ["질문","답변"],
         time: "시간 전",
     }
 };
-
-
 
 function Section () {
 
@@ -57,9 +87,11 @@ function Section () {
     const title = langSection.ko.title;
     const time = langSection.ko.time;
 
+    const [view, setView] = useState(0);
+
     return(
         <>
-            <Title title = { title[0] }/>
+            <Title title = {title[0]} setView={setView} con={con1}/>
             { con1.length === 0 || con1.length === 1 
                 ?
                 <>
@@ -73,18 +105,22 @@ function Section () {
                 </BoxDiv>
                 </>
                 :
+                <Frame>
+                    {
                 con1.map( (con1) => {
                 return <Box con={ con1 } time={time}></Box>
                 })
             }
+                </Frame>
+            }
             <More to="/">자세히 보기</More>
-            <Title title = { title[1] }/>
+            <Title title = { title[1] } setView={setView} con={con2}/>
             { con2.length === 0 || con2.length === 1 
                 ?
                 <>
                 {
                 con2.map( (con2) => {
-                    return <Box con={ con2 } time={time}></Box>
+                    return <Box con={ con2 } time={time} ></Box>
                     })
                 }
                 <BoxDiv>
@@ -92,17 +128,30 @@ function Section () {
                 </BoxDiv>
                 </>
                 :
+                <Frame>{
                 con2.map( (con2 => {
                 return <Box con={ con2 } time={time}></Box>
                 })
                 )
+                }</Frame>
             }
             <More to="/">자세히 보기</More>
         </>
     );
 };
 
+const Frame = styled.div`
+    height:257px; width:100%;
+    overflow:hidden; 
+    display:flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    justify-content: center;
 
+    @media all and (max-width:350px){
+        height:270px;
+    }
+    `;
 const More = styled(Link)`
     width: 100%;
     text-decoration:none;

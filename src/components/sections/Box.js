@@ -65,14 +65,17 @@ const YellowBox = styled.div`
     margin-left:0.5rem;
   }
 `;
-
 const Question = styled.p`
-  display:flex;
+  display: -webkit-box;
   font-size: 0.875rem;
   font-weight: bold;
   margin-left:0.5rem;
   box-sizing: border-box;
-  text-overflow: ellipsis;
+  overflow:hidden; 
+  text-overflow:ellipsis; 
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
   @media (min-width:340px){
     margin-left: 1rem;
   }
