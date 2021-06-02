@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import Num3Comma from '../function/Num3Comma';    
 
 const langHunPopup = {
     ko:{
-        hunhunal:"30,000",
         //고정
         title:"훈훈알 증정하기",
         text:"금일 증정 가능하신 훈훈알은 총",
@@ -13,42 +13,66 @@ const langHunPopup = {
         confirm:"확인",
     }
 }
-function HunPopup({hunAl, setHunAl}) {
+function HunPopup(props) {
     const title = langHunPopup.ko.title;
     const text = langHunPopup.ko.text;
     const huntext = text.slice(0,14);
     const total = text.slice(15);
-    const hunhunal = langHunPopup.ko.hunhunal;
+    const hunhunal = Num3Comma(props.myAlmoney);
     const textEnd = langHunPopup.ko.textEnd;
     const al = langHunPopup.ko.al;
     const cancel = langHunPopup.ko.cancel;
     const confirm = langHunPopup.ko.confirm;
 
+    //증정한 알머니 value 값
+    const [presentAl, setPresentAl] = useState('');
+    const onChange = (e) => {
+        setPresentAl(e.target.value);
+        if (e.target.value < 0) {
+            setPresentAl(0);
+        } else if (e.target.value > 10000) {
+            setPresentAl(10000);
+        }
+    }
+    // 훈훈알 증정 
+    const sendHunAl = () => {
+        if ( props.myAlmoney > 0) {
+            props.setMyAlomoney(props.myAlmoney - presentAl);
+        } else {
+            alert("금일 증정 가능하신 훈훈알을 전부 쓰셨습니다.");
+        }
+    }
     return (
-        <HunPopupWrap>
-            { hunAl ? 
-            <HunPopupBox>
+        props.hunAl &&
+        <HunPopupWrap onClick={() => {props.setHunAl(false)}}>
+            <HunPopupBox onClick={(e)=> {e.stopPropagation();}}>
                 <HunTitle>{title}</HunTitle>
                 <HunText>{huntext}<br/>{total} <HunSpan>{hunhunal}</HunSpan>{textEnd}</HunText>
                 <HunInputBox>
-                    <HunInput type="number" placeholder="300~10,000" step="100"></HunInput>
+                    <HunInput type="number" placeholder="300~10,000" step="100" onChange={onChange} value={presentAl}></HunInput>
                     <HunInputSpan>{al}</HunInputSpan>
                 </HunInputBox>
                 <HunBtnBox>
-                    <HunBtn onClick={()=>{setHunAl(!hunAl)}}>{cancel}</HunBtn>
-                    <HunBtnR onClick={()=>{setHunAl(!hunAl)}}>{confirm}</HunBtnR>
+                    <HunBtn onClick={()=>{props.setHunAl(false); setPresentAl('');}}>{cancel}</HunBtn>
+                    <HunBtnR onClick={()=>{ sendHunAl(); setPresentAl(''); props.setHunAl(false); }}>{confirm}</HunBtnR>
                 </HunBtnBox>
             </HunPopupBox>
-            : null}
         </HunPopupWrap>
     );
 }
 
 const HunPopupWrap = styled.div`
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.5);
+    z-index:9999;
 `;
 
 const HunPopupBox = styled.div`
-    z-index:999999;
+    z-index:9;
     background:#fefefe;
     border:0.5px solid #bebebe;
     width:90%;

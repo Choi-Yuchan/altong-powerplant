@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import AlogContents from './ContentElements/AlogContents';
+import { Link } from 'react-router-dom';
 
 
-function AlogContent ({ title, writer, shadow, sticker, circle, background, backgroundColor }) {
+function AlogContent ({ title, writer, shadow, sticker, circle, background, backgroundColor,url }) {
     
     return (
-        <AlogCon>
+        <AlogCon href={url}>
                 <AlogContents 
                 title={title} 
                 writer={writer} 
@@ -20,12 +21,14 @@ function AlogContent ({ title, writer, shadow, sticker, circle, background, back
     );
 };
 
-const AlogCon = styled.div`
+const AlogCon = styled.a`
     background-color:#fff;
     display:flex;
     justify-content:center;
     align-content:center;
     flex-wrap:wrap;
+    text-decoration:none;
+    color:#707070;
     cursor:pointer;
 `;
 

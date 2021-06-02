@@ -10,35 +10,38 @@ const langAlog = {
     ko:{
         id: [ "Vivien"],
         contents:[
-            // {
-            // title:"우리 언제 만날 수 있을까? 정답을 알려줘",
-            // writer:"흰둥이",
-            // shadow: false,
-            // circle:"profile01.jpg",
-            // sticker:false,
-            // background:"ad_12.jpg",
-            // backgroundColor:"",
-            // },
-            // {
-            // title:"우리 날 수 있을까? 정답을 알려줘",
-            // writer:"빨둥이",
-            // shadow: false,
-            // circle:"profile04.jpg",
-            // sticker:false,
-            // background:"ad_1.jpg",
-            // backgroundColor:"red",
-            // }
+            {
+            title:"우리 언제 만날 수 있을까? 정답을 알려줘",
+            writer:"흰둥이",
+            shadow: false,
+            circle:"profile01.jpg",
+            sticker:false,
+            background:"ad_12.jpg",
+            backgroundColor:"",
+            url:"http://www.naver.com"
+            },
+            {
+            title:"우리 날 수 있을까? 정답을 알려줘",
+            writer:"빨둥이",
+            shadow: false,
+            circle:"profile04.jpg",
+            sticker:false,
+            background:"ad_1.jpg",
+            backgroundColor:"red",
+            url:"http://www.naver.com"
+            }
         ],
         contents2:[
-        // {
-        //     title:"우리 언제 만날 수 있을까? 정답을 알려줘",
-        //     writer:"흰둥이",
-        //     shadow: true,
-        //     circle:"profile02.jpg",
-        //     sticker:false,
-        //     background:"ad_4.jpg",
-        //     backgroundColor:"blue",
-        // },
+        {
+            title:"우리 언제 만날 수 있을까? 정답을 알려줘",
+            writer:"흰둥이",
+            shadow: true,
+            circle:"profile02.jpg",
+            sticker:false,
+            background:"ad_4.jpg",
+            backgroundColor:"blue",
+            url:"http://www.naver.com"
+        },
         {
             title:"우리 날 수 있을까? 정답을 알려줘",
             writer:"빨둥이",
@@ -47,6 +50,7 @@ const langAlog = {
             sticker:true,
             background:"ad_5.jpg",
             backgroundColor:"#333",
+            url:"http://www.naver.com"
         }
     
     ],
@@ -94,6 +98,7 @@ function Alog () {
                         circle={content.circle}
                         background={content.background}
                         backgroundColor={content.backgroundColor}
+                        url={content.url}
                         />
                 } )
             }
@@ -118,6 +123,7 @@ function Alog () {
                         circle={content.circle}
                         background={content.background}
                         backgroundColor={content.backgroundColor}
+                        url={content.url}
                         />
                 } )
             }
@@ -134,6 +140,7 @@ function Alog () {
                         circle={content.circle}
                         background={content.background}
                         backgroundColor={content.backgroundColor}
+                        url={content.url}
                         />
                 } )
             }

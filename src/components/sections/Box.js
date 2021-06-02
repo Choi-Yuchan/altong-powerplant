@@ -167,6 +167,7 @@ function Box({con, time}) {
           </Txt>
           <GlobalBox onClick={(e) => {
             e.nativeEvent.stopImmediatePropagation();
+            e.preventDefault();
             setShow(!show);} } >
             <ShowS show={show} src={process.env.PUBLIC_URL + '/images/language.svg'} />
           </GlobalBox>

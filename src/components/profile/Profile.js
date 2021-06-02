@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import ProfileImg from './profileimage/ProfileImg';
 import VisitorBox from './visitorBox/VisitorBox';
 import AlogMessage from './AlogMessage';
 import HunPopup from './HunPopup';
+import axios from 'axios';
 
 const Section = styled.section`
     width:100%;
@@ -179,11 +180,70 @@ const Profile = () => {
     const [close, setClose] = useState(false);
     const [hunAl,setHunAl] = useState(false);
     const [show, setShow] = useState(true);
+    const [partnerSeq, setPartnerSeq] = useState(null);
+    const [flagPartner, setFlagPartner] = useState(null);
 
-    //알통 멘토 데이터와 연동해서 추가 되도록 해야합니다.
-    const addMento = () => {
-        console.log("멘토 추가!");
+    //멘토 추가를 위한 URL 정보 받기
+    const URL_USERDATA = "/user/userdata"
+
+    useEffect(() => {
+        const getUser = async () => {
+            try{
+                const userdata = await axios.get(URL_USERDATA);
+    
+                setPartnerSeq(userdata.data.seq);
+                setFlagPartner(userdata.data.flag);
+            } catch (e) {
+                console.log("It's failed to get data")
+            }
+        }
+
+        getUser();
+    },[])
+
+    //URL 
+    const URL_MENTO_LIST = `/restApi/users/${partnerSeq}/${flagPartner}/partner-save`
+
+    const handleShow = () => {
+        setShow(!show)
     }
+    // 로그인 상태
+    const user = {
+        seq: 10000000,
+        nick: "homan", // 같은유저, 로그인상태, 로그아웃상태
+        lv: 2
+    };
+    //나의 증정 가능한 알머니
+    const [myAlmoney, setMyAlomoney] = useState(30000);
+    //로그인 유무
+    const userLogin = (props) => {
+        if ( props === "") {
+            alert("로그인 후 이용할 수 있습니다.");
+        } else if ( props === userData[0].id) {
+            alert("본인에게는 훈훈알을 지급할 수 없습니다.");
+        } else {
+            setHunAl(true);
+        }
+    }
+
+    //업데이트해야하는 멘토 데이터에 대해 수정 필요
+    const addMento = async () => {
+        try{
+            const response = await axios.put(URL_MENTO_LIST, {
+                seq: "231242",
+                username: "ingu1839",
+                lv:"4",
+            })
+            console.log(response.data);
+            return response.data;
+        } catch (e) {
+            console.log("It's failed to update data");
+        }
+
+        handleShow();
+    }
+    
+
 
     return(
         <Section>
@@ -208,12 +268,16 @@ const Profile = () => {
                 </ProfileMid>
                 <ProfileBot>
                     <IconBox>
-                            <Icon onClick={() => {setShow(false)}} src={show ? process.env.PUBLIC_URL + '/images/add-mento.svg' : process.env.PUBLIC_URL + '/images/added-mento.png'} alt={altText[1]}/> 
-                            <Icon onClick={() => {setHunAl(!hunAl)}} src={process.env.PUBLIC_URL + `/images/answer_almoney.svg`} alt={altText[2]}/>
+                            <Icon onClick={addMento} src={show ? process.env.PUBLIC_URL + '/images/add-mento.svg' : process.env.PUBLIC_URL + '/images/added-mento.png'} alt={altText[1]}/> 
+                            <Icon onClick={() => {userLogin(user.nick)}} src={process.env.PUBLIC_URL + `/images/answer_almoney.svg`} alt={altText[2]}/>
                             <Icon onClick={() => {setClose(!close)}} src={process.env.PUBLIC_URL + `/images/message.svg`} alt={altText[3]}/>
                     </IconBox>
                     <AlogMessage close={close} setClose={setClose}/>
-                    <HunPopup hunAl={hunAl} setHunAl={setHunAl}/>
+                    <HunPopup 
+                        hunAl={hunAl} 
+                        setHunAl={setHunAl} 
+                        myAlmoney={myAlmoney} setMyAlomoney={setMyAlomoney}
+                    />
                 </ProfileBot>
             </ProfileBox>
         </Section>

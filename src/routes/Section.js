@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState } from 'react';
 
-
 const langSection = {
     ko:{
         con1 : [
@@ -62,7 +61,9 @@ const langSection = {
                 hour:"23",
                 look:"30",
                 answer:"1/2",
+
                 hun:"10000"
+
             },
             {
                 value:"400",
@@ -71,7 +72,9 @@ const langSection = {
                 hour:"13",
                 look:"20",
                 answer:"1/4",
+
                 hun:"30000"
+
             }
         ],
         //고정
@@ -92,6 +95,7 @@ function Section () {
     return(
         <>
             <Title title = {title[0]} setView={setView} con={con1}/>
+
             { con1.length === 0 || con1.length === 1 
                 ?
                 <>
