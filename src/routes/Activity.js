@@ -13,6 +13,7 @@ const langActivity = {
         id:["Vivien"],
         question:["4069"],
         answer:["1030"],
+        levelUp:"승천정보",
         grossProfit:["1000000"],
         answerProfit:["876520"],
         alogProfit:["79882"],
@@ -24,6 +25,7 @@ function Activity () {
     const getID = langActivity.ko.id;
     const question = Num3Comma(langActivity.ko.question);
     const answer = Num3Comma(langActivity.ko.answer);
+    const levelUp = langActivity.ko.levelUp;
     const answerProfit = Num3Comma(langActivity.ko.answerProfit);
     const alogProfit = Num3Comma(langActivity.ko.alogProfit);
     const grossProfit = Num3Comma(langActivity.ko.grossProfit);
@@ -35,6 +37,7 @@ function Activity () {
             id = {getID} 
             question = {question}
             answer = {answer}
+            levelUp = {levelUp}
             />
             <ActivityTotal
             gprofit = {grossProfit}

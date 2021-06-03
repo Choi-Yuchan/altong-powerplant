@@ -51,13 +51,16 @@ const langActivityAlogPage = {
                 count: "298",
                 gun: "건 / ",
                 title2: "합계 ",
-                number: "1580279알"
+                number: "1580279",
+                al:"알"
+                
             },
             {
                 id: 2,
                 title: "훈훈알",
                 count: "590600",
-                gun: "알",
+                gun: "",
+                al:"알",
                 title2: "",
                 number: ""
             },
@@ -66,7 +69,8 @@ const langActivityAlogPage = {
                 title: "추천수익",
                 count: "1428579",
                 gun: "",
-                title2: "알",
+                title2: "",
+                al:"알",
                 number: ""
             }
         ],
@@ -91,7 +95,7 @@ const ActivityAlogPage = () => {
             <ActivityDivide open={open} reply={reply}/>
             {
                 subject.map((data) => {
-                    return <ActivityContents key={data.id} title={data.title} count={data.count} gun={data.gun} title2={data.title2} number={data.number}/>
+                    return <ActivityContents key={data.id} title={data.title} count={data.count} gun={data.gun} title2={data.title2} number={data.number} al={data.al}/>
                 })
             }
         </>
