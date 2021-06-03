@@ -1,27 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import Num3Comma from '../function/Num3Comma';
 
-
-function ActivityContents ({contents}) {
+function ActivityContents ({title, count, gun, title2, number}) {
+    const refinedCount = Num3Comma(count);
+    const refinedNumber = Num3Comma(number);
 
     return (
-        contents.map(function(contents){
-            return(
-                <Total key={contents.id}>
-                    <ActivityConL>
-                        {contents.title }
-                    </ActivityConL>
-                    <Line></Line>
-                    <ActivityConR>
-                        {contents.count}
-                        {contents.gun}
-                        {contents.title2}
-                        {contents.number}
-                    </ActivityConR>
-                </Total>
-            )
-        })
-    );   
+            <Total>
+                <ActivityConL>
+                    {title}
+                </ActivityConL>
+                <Line></Line>
+                <ActivityConR>
+                    {refinedCount}
+                    {gun}
+                    {title2}
+                    {refinedNumber}
+                </ActivityConR>
+            </Total>
+            )   
 };
 
 const Total = styled.div`

@@ -6,27 +6,28 @@ import ActivityTotal from '../components/activity/ActivityTotal';
 import ActivityAlogPage from '../routes/ActivityAlogPage';
 import ActivityNestPage from '../routes/ActivityNestPage';
 import { Route } from 'react-router-dom';
+import Num3Comma from '../components/function/Num3Comma';
 
 const langActivity = {
     ko:{
         id:["Vivien"],
-        question:["4,069"],
-        answer:["1,030"],
-        grossProfit:["1,000,000"],
-        answerProfit:["876,520"],
-        alogProfit:["79,882"],
-        nestProfit:['43,598'],
+        question:["4069"],
+        answer:["1030"],
+        grossProfit:["1000000"],
+        answerProfit:["876520"],
+        alogProfit:["79882"],
+        nestProfit:['43598'],
     }
 }
 
 function Activity () {
     const getID = langActivity.ko.id;
-    const question = langActivity.ko.question;
-    const answer = langActivity.ko.answer;
-    const grossProfit = langActivity.ko.grossProfit;
-    const answerProfit = langActivity.ko.answerProfit;
-    const alogProfit = langActivity.ko.alogProfit;
-    const nestProfit = langActivity.ko.nestProfit;
+    const question = Num3Comma(langActivity.ko.question);
+    const answer = Num3Comma(langActivity.ko.answer);
+    const answerProfit = Num3Comma(langActivity.ko.answerProfit);
+    const alogProfit = Num3Comma(langActivity.ko.alogProfit);
+    const grossProfit = Num3Comma(langActivity.ko.grossProfit);
+    const nestProfit = Num3Comma(langActivity.ko.nestProfit);
 
     return (
         <Active>
