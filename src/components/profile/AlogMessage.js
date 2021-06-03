@@ -1,41 +1,60 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const langAlogMessage ={
     ko:{
-        userID: ["Vivien"],
         //고정
         titleText: "님에게 메시지 보내기",
-        sendBtn:"보내기",
         cancelBtn:"취소",
     }
 }
-function AlogMessage ({close, setClose}) {
+function AlogMessage ({close, setClose, userData}) {
 
-    const nickName = langAlogMessage.ko.userID;
+    const nickName = userData[0].id;
     const titleText = langAlogMessage.ko.titleText;
-    const sendBtn = langAlogMessage.ko.sendBtn;
-    const cancelBtn = langAlogMessage.ko.cancelBtn
+    const [sendBtn, setSendBtn] = useState('보내기');
+    const cancelBtn = langAlogMessage.ko.cancelBtn;
+
+    const [message, setMessage] = useState('');
+    const handleChange = (e) => {
+        setMessage(e.target.value);
+    }
+    const sendMessage = () => {
+        if (message === '') {
+            alert('내용을 입력해 주세요.');
+        } else {
+            alert('쪽지가 전송되었습니다!');
+            setMessage('');
+            setClose(false);
+        }
+    }
+
     return (
-        <>
-            { close ?
-            <Frame>
+        close &&
+        <MessageBox onClick={()=>{setClose(false)}}>
+            <Frame onClick={(e)=>{e.stopPropagation();}}>
                 <Title><span>{nickName}</span>{titleText}</Title>
                 <Form action="#">
-                <TxtArea></TxtArea>
+                <TxtArea value={message} onChange={(e)=>{handleChange(e)}}></TxtArea>
                 </Form>
                 <ButtonFrame>
-                    <Send>{sendBtn}</Send>
-                    <Cancel onClick={ () => { setClose(!close) } }>{cancelBtn}</Cancel>
+                    <Cancel onClick={ () => { setClose(false) } }>{cancelBtn}</Cancel>
+                    <Send onClick={()=>{sendMessage(); }}>{sendBtn}</Send>
                 </ButtonFrame>
             </Frame>
-            :null
-            }
-        </>
+        </MessageBox>
     )
 };
 
+const MessageBox = styled.div`
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:9999;
+`;
 const Title = styled.div`
     width:80%; height:20px;
     font-size:1em;
@@ -43,6 +62,11 @@ const Title = styled.div`
     color:#707070;
     text-align:center;
     margin:0 auto 20px;
+    font-weight:bold;
+
+    span {
+        color:#eb639d;
+    }
 `;
 
 const TxtArea = styled.textarea`
@@ -78,8 +102,7 @@ const Frame = styled.div`
 `;
 
 const ButtonFrame = styled.div`
-    width:100%; height:40px;
-    line-height:40px;
+    width:100%;
     display:flex;
     justify-content:space-around;
     text-align:center;
@@ -87,16 +110,21 @@ const ButtonFrame = styled.div`
 `;
 
 const Send = styled.div`
-    border:1px solid #707070;
+    border:1px solid #fd0031;
     border-radius:25px;
-    width:30%;
+    width:40%;
     cursor:pointer;
+    padding:5px 0;
+    color:#fd0031;
+    font-size:0.875rem;
 `;
 const Cancel = styled.div`
     border:1px solid #707070;
     border-radius:25px;
-    width:30%;
+    width:40%;
     cursor:pointer;
+    padding:5px 0;
+    font-size:0.875rem;
 `;
 
 export default AlogMessage;
