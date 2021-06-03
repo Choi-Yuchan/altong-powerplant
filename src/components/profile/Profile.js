@@ -215,7 +215,7 @@ const Profile = () => {
     };
     //나의 증정 가능한 알머니
     const [myAlmoney, setMyAlomoney] = useState(30000);
-    //로그인 유무
+    //로그인 유무 훈훈알
     const userLogin = (props) => {
         if ( props === "") {
             alert("로그인 후 이용할 수 있습니다.");
@@ -225,13 +225,23 @@ const Profile = () => {
             setHunAl(true);
         }
     }
+    //로그인 유무 쪽지보내기
+    const sendPopup = (props) => {
+        if (props === "") {
+            alert("로그인 후 이용할 수 있습니다.");
+        } else if ( props === userData[0].id) {
+            alert("본인에게는 쪽지를 보낼 수 없습니다.")
+        } else {
+            setClose(true);
+        }
+    }
 
     //업데이트해야하는 멘토 데이터에 대해 수정 필요
     const addMento = async () => {
         try{
             const response = await axios.put(URL_MENTO_LIST, {
                 seq: "231242",
-                username: "ingu1839",
+                nick: "ingu1839",
                 lv:"4",
             })
             console.log(response.data);
@@ -270,9 +280,9 @@ const Profile = () => {
                     <IconBox>
                             <Icon onClick={addMento} src={show ? process.env.PUBLIC_URL + '/images/add-mento.svg' : process.env.PUBLIC_URL + '/images/added-mento.png'} alt={altText[1]}/> 
                             <Icon onClick={() => {userLogin(user.nick)}} src={process.env.PUBLIC_URL + `/images/answer_almoney.svg`} alt={altText[2]}/>
-                            <Icon onClick={() => {setClose(!close)}} src={process.env.PUBLIC_URL + `/images/message.svg`} alt={altText[3]}/>
+                            <Icon onClick={() => {sendPopup(user.nick)}} src={process.env.PUBLIC_URL + `/images/message.svg`} alt={altText[3]}/>
                     </IconBox>
-                    <AlogMessage close={close} setClose={setClose}/>
+                    <AlogMessage close={close} setClose={setClose} userData={userData}/>
                     <HunPopup 
                         hunAl={hunAl} 
                         setHunAl={setHunAl} 
