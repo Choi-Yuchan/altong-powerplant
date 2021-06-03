@@ -1,6 +1,7 @@
 import ActivityGraph from '../components/activity/ActivityGraph';
 import ActivityDivide from '../components/activity/ActivityDivide';
 import ActivityContents from '../components/activity/ActivityContents';
+import Num3Comma from '../components/function/Num3Comma';
 
 const langActivityAlogPage = {
     ko:{
@@ -50,45 +51,53 @@ const langActivityAlogPage = {
                 count: "298",
                 gun: "건 / ",
                 title2: "합계 ",
-                number: "1,580,279알"
+                number: "1580279",
+                al:"알"
+                
             },
             {
                 id: 2,
                 title: "훈훈알",
-                count: "590,600",
-                gun: "알",
+                count: "590600",
+                gun: "",
+                al:"알",
                 title2: "",
                 number: ""
             },
             {
                 id: 3,
                 title: "추천수익",
-                count: "142,857.9",
+                count: "1428579",
                 gun: "",
-                title2: "알",
+                title2: "",
+                al:"알",
                 number: ""
             }
         ],
         open: [
-            "2,890"
+            "2890"
         ],
         reply:[
-            "1,574"
+            "1574"
         ],
     }
 }
 const ActivityAlogPage = () => {
     const alogRevenue = langActivityAlogPage.ko.revenue;
     const alogExpense = langActivityAlogPage.ko.expense;
-    const open = langActivityAlogPage.ko.open;
-    const reply = langActivityAlogPage.ko.reply;
+    const open = Num3Comma(langActivityAlogPage.ko.open);
+    const reply = Num3Comma(langActivityAlogPage.ko.reply);
     const subject = langActivityAlogPage.ko.subject;
 
     return(
         <>
-            <ActivityGraph revenue={alogRevenue} expense={alogExpense}></ActivityGraph>
-            <ActivityDivide open={open} reply={reply}></ActivityDivide>
-            <ActivityContents contents={subject}></ActivityContents>
+            <ActivityGraph revenue={alogRevenue} expense={alogExpense}/>
+            <ActivityDivide open={open} reply={reply}/>
+            {
+                subject.map((data) => {
+                    return <ActivityContents key={data.id} title={data.title} count={data.count} gun={data.gun} title2={data.title2} number={data.number} al={data.al}/>
+                })
+            }
         </>
     );
 }

@@ -10,7 +10,7 @@ const langActivityTitle = {
         wu:"위",
     }
 }
-function ActivityTitle ({id, question, answer}) {
+function ActivityTitle ({id, question, answer, levelUp}) {
     const titleText = langActivityTitle.ko.titleText;
     const queRank = langActivityTitle.ko.queRank;
     const ansRank = langActivityTitle.ko.ansRank;
@@ -25,10 +25,20 @@ function ActivityTitle ({id, question, answer}) {
                 <span>{queRank} <span>{ question }</span>{wu}</span>
                 <Rank2>{ansRank} <span>{ answer}</span>{wu}</Rank2>
             </Rank>
+            <LevelUpInfo>
+                {levelUp}
+            </LevelUpInfo>
         </TitleOption>
     );
 };
-
+const LevelUpInfo = styled.a`
+    width:80px;
+    height:15px;
+    line-height: 1.2;
+    text-align:center;
+    border:1px solid #000; 
+    border-radius: 10px;
+`;
 const TitleOption = styled.div`
     display:flex;
     justify-content:space-between;

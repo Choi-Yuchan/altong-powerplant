@@ -1,6 +1,7 @@
 import ActivityGraph from '../components/activity/ActivityGraph';
 import ActivityDivide from '../components/activity/ActivityDivide';
 import ActivityContents from '../components/activity/ActivityContents';
+import Num3Comma from '../components/function/Num3Comma';
 
 const langActivityPage = {
     ko:{
@@ -71,7 +72,7 @@ const langActivityPage = {
             {
                 id: 3,
                 title: "추천수익",
-                count: "142,857.9",
+                count: "1428579",
                 gun: " ",
                 title2: "알",
                 number: ""
@@ -89,15 +90,19 @@ const langActivityPage = {
 const ActivityPage = () => {
     const revenue = langActivityPage.ko.revenue;
     const expense = langActivityPage.ko.expense;
-    const open = langActivityPage.ko.open;
-    const reply = langActivityPage.ko.reply;
+    const open = Num3Comma(langActivityPage.ko.open);
+    const reply = Num3Comma(langActivityPage.ko.reply);
     const subject = langActivityPage.ko.subject;
 
     return(
         <>
             <ActivityGraph revenue={revenue} expense={expense}></ActivityGraph>
             <ActivityDivide open={open} reply={reply}></ActivityDivide>
-            <ActivityContents contents={subject}></ActivityContents>
+            {
+                subject.map((data) => {
+                    return <ActivityContents key={data.id} title={data.title} count={data.count} gun={data.gun} title2={data.title2} number={data.number} al={data.al}/>
+                })
+            }
         </>
     );
 }
