@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Num3Comma from '../../function/Num3Comma';
 
 const VisitorContainer = styled.div`
     display: flex;
@@ -29,12 +30,14 @@ const Partition = styled.span`
 `;
 
 const VisitorBox = ({today, total}) => {
+    const todayCount = Num3Comma(today);
+    const totalCount = Num3Comma(total);
     return(
         <VisitorContainer>
             <Word>지식발전소</Word>
-            <Today>Today {today}</Today>
+            <Today>Today {todayCount}</Today>
             <Partition>l</Partition>
-            <Total>Total {total}</Total>
+            <Total>Total {totalCount}</Total>
         </VisitorContainer>
     );
 }
