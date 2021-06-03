@@ -83,6 +83,27 @@ function Title(props) {
 
     const droplist = langTitle.ko.droplist;
 
+    function sortLook1 (){ 
+        props.con.sort(function(a, b){
+        return b.look - a.look;
+    });
+    }
+    function sortValue1 (){ 
+        props.con.sort(function(a, b){
+        return b.value - a.value;
+    });
+    }
+    function sortHun1 (){ 
+        props.con.sort(function(a, b){
+        return b.hun - a.hun;
+    });
+    }
+    function sortHour1 (){ 
+        props.con.sort(function(a, b){
+        return b.hour - a.hour;
+    });
+    }
+
     const [name, changeName] = useState(0);
 
     return (
@@ -93,10 +114,10 @@ function Title(props) {
                 <Right onClick={showMenu}>
                     {isShow ? 
                     <DropdownBox>
-                        <DropList onClick={ ()=>{ changeName(0); } }>{droplist[0]}</DropList>
-                        <DropList onClick={ ()=>{ changeName(1); } }>{droplist[1]}</DropList>
-                        <DropList onClick={ ()=>{ changeName(2); } }>{droplist[2]}</DropList>
-                        <DropList onClick={ ()=>{ changeName(3); } }>{droplist[3]}</DropList>
+                        <DropList onClick={ ()=>{ changeName(0); props.setView(0); sortLook1();  } }>{droplist[0]}</DropList>
+                        <DropList onClick={ ()=>{ changeName(1); props.setView(1); sortHour1(); } }>{droplist[1]}</DropList>
+                        <DropList onClick={ ()=>{ changeName(2); props.setView(2); sortHun1(); } }>{droplist[2]}</DropList>
+                        <DropList onClick={ ()=>{ changeName(3); props.setView(3); sortValue1();  } }>{droplist[3]}</DropList>
                     </DropdownBox> : 
                     <ShowBox>
                         <TabContent name = {name} droplist = { droplist }/>
