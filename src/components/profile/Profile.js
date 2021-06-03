@@ -230,7 +230,7 @@ const Profile = () => {
         if (props === "") {
             alert("로그인 후 이용할 수 있습니다.");
         } else if ( props === userData[0].id) {
-            alert("본인에게는 쪽지를 보낵 수 없습니다.")
+            alert("본인에게는 쪽지를 보낼 수 없습니다.")
         } else {
             setClose(true);
         }
