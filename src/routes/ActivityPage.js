@@ -9,7 +9,7 @@ const langActivityPage = {
             // x,color는 고정값
             { 
                 x: "훈훈알",
-                y: 24,
+                y: 22,
                 color: "#fc6d89"
             },
             { 
@@ -19,7 +19,7 @@ const langActivityPage = {
             },
             { 
                 x: "답변", 
-                y:23,
+                y:25,
                 color: "#ff9aad" 
             },
             { 
@@ -32,12 +32,12 @@ const langActivityPage = {
             // x,color는 고정값
             { 
                 x: "감사알",
-                y: 25,
+                y: 48,
                 color: "#98D0FB"
             },
             { 
                 x: "훈훈알(질문)", 
-                y:48,
+                y: 25,
                 color: "#65BDF8"
             },
             { 
@@ -94,10 +94,25 @@ const ActivityPage = () => {
     const reply = Num3Comma(langActivityPage.ko.reply);
     const subject = langActivityPage.ko.subject;
 
+   const revenueSort = () => { 
+        revenue.sort(function(a, b){
+        return b.y - a.y;
+    });
+    }
+
+    const expenseSort = () => { 
+        expense.sort(function(a, b){
+        return b.y - a.y;
+    });
+    }
+
+    revenueSort();
+    expenseSort();
+
     return(
         <>
-            <ActivityGraph revenue={revenue} expense={expense}></ActivityGraph>
-            <ActivityDivide open={open} reply={reply}></ActivityDivide>
+            <ActivityGraph revenue={revenue} expense={expense} ></ActivityGraph>
+            <ActivityDivide open={open} reply={reply} ></ActivityDivide>
             {
                 subject.map((data) => {
                     return <ActivityContents key={data.id} title={data.title} count={data.count} gun={data.gun} title2={data.title2} number={data.number} al={data.al}/>
