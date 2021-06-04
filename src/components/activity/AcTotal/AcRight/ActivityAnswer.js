@@ -13,13 +13,13 @@ const langActivityAnswer = {
 function ActivityAnswer (props) {
     const text = langActivityAnswer.ko.text;
     const al = langActivityAnswer.ko.al;
-
     return (
         <Answer to="/activity">
-            <AnswerL>{text}</AnswerL>
-            <AnswerR><Highlight>{ props.Ans }</Highlight> {al}</AnswerR>
+            <AnswerL push = {props.push} onClick={ () => { props.setPush(1)} }>{text}</AnswerL>
+            <AnswerR push = {props.push} onClick={ () => { props.setPush(1)}}><Highlight>{ props.Ans }</Highlight> {al}</AnswerR>
         </Answer>
     )
+    
 }
 
 const Answer = styled(Link)`
@@ -31,19 +31,31 @@ const Answer = styled(Link)`
 
 const AnswerL = styled.div`
     font-size:12px;
-    color:#707070;
+    color:${ props => props.push === 1 ? "#fd0031" : "#707070" };
     font-weight:bold;
     text-align:center;
     flex-basis:45%;
+    margin-left:15px;
+    background-color:${ props => props.push === 1 ? "#fefefe" : "#fefefe" };
+    border-radius: 10px;
+    box-shadow:${ props => props.push === 1 ? "rgba(0, 0, 0, 0.3) 3px 3px 10px inset" : "none" };
 `;
 
 const AnswerR = styled.div`
     font-size:12px;
     color:#707070;
     font-weight:bold;
-    text-align:center;
+    text-align:right;
+    margin-right:10px;
     flex-basis:55%;
     box-sizing:border-box;
+    
+    @media all and (min-width:400px){
+        margin-right:30px;
+    }
+    @media all and (min-width:650px){
+        margin-right:45px;
+    }
 `;
 
 const Highlight = styled.span`

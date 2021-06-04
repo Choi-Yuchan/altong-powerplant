@@ -21,27 +21,41 @@ function ActivityTitle ({id, question, answer, levelUp}) {
             <IDContainer>
                 <span>{ id }</span>{titleText}
             </IDContainer>
+            <Wrap>
             <Rank>
                 <span>{queRank} <span>{ question }</span>{wu}</span>
                 <Rank2>{ansRank} <span>{ answer}</span>{wu}</Rank2>
             </Rank>
-            <LevelUpInfo>
+            {/* 클릭 시 해당 계정의 승천정보로 이동 */}
+            <LevelUpInfo href="http://altong.com">
                 {levelUp}
             </LevelUpInfo>
+            </Wrap>
         </TitleOption>
     );
 };
+
+const Wrap = styled.div`
+    text-align:right;
+`;
 const LevelUpInfo = styled.a`
     width:80px;
     height:15px;
     line-height: 1.2;
     text-align:center;
-    border:1px solid #000; 
     border-radius: 10px;
+    background:#fafafa;
+    margin-left:10px;
+    display:inline-block;
+    color:#707070;
+    text-decoration: none;
+    box-shadow:4px 4px 6px 0 rgba(0, 0, 0, 0.1), -4px -4px 6px rgba(255, 255, 255, 0.7);
+    cursor: pointer;
 `;
 const TitleOption = styled.div`
+    max-width:690px;
     display:flex;
-    justify-content:space-between;
+    flex-direction: column;
     font-weight:bold;
     font-size:0.75rem;
     margin:1.25rem 2rem;
@@ -53,11 +67,14 @@ const TitleOption = styled.div`
     }    
 `;
 const IDContainer = styled.div`
+    width:100%;
+    display: block;
+    margin-bottom:10px;
 `;
 const Rank = styled.div`
     font-size:0.5rem;
     font-weight:normal;
-    float:right;
+    display:inline-block;
 
     @media all and (max-width:500px){
     }

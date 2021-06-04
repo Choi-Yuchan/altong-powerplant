@@ -16,8 +16,8 @@ function ActivityAlog (props) {
 
     return (
         <Answer to="/activity/alog">
-            <AnswerL>{text}</AnswerL>
-            <AnswerR><Highlight>{ props.Rep }</Highlight> {al}</AnswerR>
+            <AnswerL push = {props.push} onClick={ () => { props.setPush(2)}}>{text}</AnswerL>
+            <AnswerR push = {props.push} onClick={ () => { props.setPush(2)}}><Highlight>{ props.Rep }</Highlight> {al}</AnswerR>
         </Answer>
     )
 }
@@ -31,18 +31,30 @@ const Answer = styled(Link)`
 
 const AnswerL = styled.div`
     font-size:12px;
-    color:#707070;
+    color:${ props => props.push === 2 ? "#fd0031" : "#707070" };
     font-weight:bold;
     text-align:center;
     flex-basis:45%;
+    margin-left:15px;
+    background-color:${ props => props.push === 2 ? "#fefefe" : "#fefefe" };
+    border-radius: 10px;
+    box-shadow:${ props => props.push === 2 ? "rgba(0, 0, 0, 0.3) 3px 3px 10px inset" : "none" };
 `;
 
 const AnswerR = styled.div`
     font-size:12px;
     color:#707070;
     font-weight:bold;
-    text-align:center;
+    text-align:right;
+    margin-right:10px;
     flex-basis:55%;
+
+    @media all and (min-width:400px){
+        margin-right:30px;
+    }
+    @media all and (min-width:650px){
+        margin-right:45px;
+    }
 `;
 
 const Highlight = styled.span`
