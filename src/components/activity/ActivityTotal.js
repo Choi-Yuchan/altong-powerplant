@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import ActivityProfit from './AcTotal/ActivityProfit';
 import ActivityRight from './AcTotal/ActivityRight';
 
-function ActivityTotal ({gprofit, ansprofit, alogprofit, nestprofit}) {
+function ActivityTotal ({gprofit, ansprofit, alogprofit, nestprofit, exchange}) {
 
     return (
         <Total>
-            <ActivityProfit Pro={gprofit}></ActivityProfit>
+            <ActivityProfit Pro={gprofit} ex={exchange}></ActivityProfit>
             <Line></Line>
-            <ActivityRight Ans={ansprofit} Rep={alogprofit} Nes={nestprofit}></ActivityRight>
+            <ActivityRight Ans={ansprofit} Rep={alogprofit} Nes={nestprofit} ></ActivityRight>
         </Total>
     );
 };
@@ -17,7 +17,7 @@ function ActivityTotal ({gprofit, ansprofit, alogprofit, nestprofit}) {
 const Total = styled.div`
     width:95%;
     background:#fafafa;
-    margin:0 auto;
+    margin:0 auto 10px;
     border-radius:5px;
     box-shadow:4px 4px 6px 0 rgba(0, 0, 0, 0.1), -4px -4px 6px rgba(255, 255, 255, 0.7);
     display:flex;

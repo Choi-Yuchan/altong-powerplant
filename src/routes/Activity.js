@@ -15,6 +15,7 @@ const langActivity = {
         answer:["1030"],
         levelUp:"승천정보",
         grossProfit:["1000000"],
+        exchangeTime:["3"],
         answerProfit:["876520"],
         alogProfit:["79882"],
         nestProfit:['43598'],
@@ -29,6 +30,7 @@ function Activity () {
     const answerProfit = Num3Comma(langActivity.ko.answerProfit);
     const alogProfit = Num3Comma(langActivity.ko.alogProfit);
     const grossProfit = Num3Comma(langActivity.ko.grossProfit);
+    const exchangeTime = Num3Comma(langActivity.ko.exchangeTime);
     const nestProfit = Num3Comma(langActivity.ko.nestProfit);
 
     return (
@@ -44,6 +46,7 @@ function Activity () {
             ansprofit = {answerProfit}
             alogprofit = {alogProfit}
             nestprofit = {nestProfit}
+            exchange ={exchangeTime}
             />
             <Route exact path="/activity" component={ActivityPage}></Route>
             <Route path = "/activity/alog" component={ActivityAlogPage}></Route>

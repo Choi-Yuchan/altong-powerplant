@@ -21,7 +21,7 @@ function ActivityDivide ({ open, reply }) {
 
 const Total = styled.div`
     width:95%;
-    margin:0 auto;
+    margin:10px auto 0;
     display:flex;
     justify-content:space-between;
 
