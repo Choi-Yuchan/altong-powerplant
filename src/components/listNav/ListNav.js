@@ -4,34 +4,32 @@ import { Link } from 'react-router-dom';
 
 const langListNav = {
     ko:{
-        //고정
-        listName:["질문/답변","알록달록","NEST","활동"]
-    }
-}
-function ListNav() {
-    const listName = langListNav.ko.listName;
-    const listMenu = [
+        listMenu: [
         {
             id:1,
-            name: listName[0],
+            name: "질문/답변",
             href: '/'
         },
         {
             id:2,
-            name: listName[1],
+            name: "알록달록",
             href: '/alog'
         },
         {
             id:3,
-            name: listName[2],
+            name: "NEST",
             href: '/nest'
         },
         {
             id:4,
-            name: listName[3],
+            name: "활동",
             href: '/activity'
         }
-    ];
+        ]
+    }
+}
+function ListNav() {
+    const listMenu = langListNav.ko.listMenu;
     const [highlight, setHighlight] = useState(0);
     return (
         <NavGroup>
