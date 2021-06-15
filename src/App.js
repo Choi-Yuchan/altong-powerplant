@@ -7,13 +7,12 @@ import Alog from './routes/Alog';
 import Nest from './routes/Nest';
 import Activity from './routes/Activity';
 import Section from './routes/Section';
-import { Font } from './style/Font';
+import './style/font.css';
 
 function App() {
 
   return (
     <Wrap>
-      <Font/>
       <TopNavi/>
       <Profile/>
       <ListNav/>
