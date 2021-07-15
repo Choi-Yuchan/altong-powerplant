@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ function AlogTitle ({id, subText, userShortCut, shortCut, direct}) {
         <AlogHeader>
             <TitleOption>
                 <span>{ id }</span>{subText}
-                <Direct>{userShortCut}</Direct>
+                <Direct to={shortCut}>{userShortCut}</Direct>
             </TitleOption>
         </AlogHeader>
     );

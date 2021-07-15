@@ -3,9 +3,9 @@ import Title from '../components/sections/Title';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const langSection = {
-    ko:{
         con1 : [
             {
                 value:"100",
@@ -77,31 +77,25 @@ const langSection = {
 
             }
         ],
-        //고정
-        title : ["질문","답변"],
-        time: "시간 전",
-    }
 };
 
 function Section () {
-
-    const con1 = langSection.ko.con1;
-    const con2 = langSection.ko.con2;
-    const title = langSection.ko.title;
-    const time = langSection.ko.time;
+    const { t } = useTranslation();
+    
+    const con1 = langSection.con1;
+    const con2 = langSection.con2;
 
     const [view, setView] = useState(0);
 
     return(
         <>
-            <Title title = {title[0]} setView={setView} con={con1}/>
-
+            <Title title = {t("question")} setView={setView} con={con1}/>
             { con1.length === 0 || con1.length === 1 
                 ?
                 <>
                 {
-                con1.map( (con1) => {
-                    return <Box con={ con1 } time={time}></Box>
+                con1.map(con1 => {
+                    return <Box con={ con1 } time={t("checkTime")}></Box>
                     })
                 }
                 <BoxDiv>
@@ -110,36 +104,32 @@ function Section () {
                 </>
                 :
                 <Frame>
-                    {
-                con1.map( (con1) => {
-                return <Box con={ con1 } time={time}></Box>
-                })
-            }
-                </Frame>
-            }
-            <More to="/">자세히 보기</More>
-            <Title title = { title[1] } setView={setView} con={con2}/>
-            { con2.length === 0 || con2.length === 1 
-                ?
-                <>
-                {
-                con2.map( (con2) => {
-                    return <Box con={ con2 } time={time} ></Box>
+                {con1.map(con1 => {
+                    return <Box con={ con1 } time={t("checkTime")}></Box>
                     })
                 }
-                <BoxDiv>
-                    <QBox>작성하신 답변이 없습니다.</QBox>
-                </BoxDiv>
+                </Frame>
+            }
+            <More to="/">{t("moreBtn")}</More>
+            <Title title = {t("answer")} setView={setView} con={con2}/>
+            { con2.length === 0 || con2.length === 1 ?
+                <>
+                    {con2.map(con2 => {
+                        return <Box con={ con2 } time={t("checkTime")} ></Box>
+                        })
+                    }
+                    <BoxDiv>
+                        <QBox>작성하신 답변이 없습니다.</QBox>
+                    </BoxDiv>
                 </>
                 :
-                <Frame>{
-                con2.map( (con2 => {
-                return <Box con={ con2 } time={time}></Box>
-                })
-                )
-                }</Frame>
+                <Frame>
+                {con2.map(con2 => {
+                return <Box con={ con2 } time={t("checkTime")}></Box>}
+                )}
+                </Frame>
             }
-            <More to="/">자세히 보기</More>
+            <More to="/">{t("moreBtn")}</More>
         </>
     );
 };

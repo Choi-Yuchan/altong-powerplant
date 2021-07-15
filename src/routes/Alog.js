@@ -5,12 +5,13 @@ import AlogTitle from '../components/alog/AlogTitle';
 import AlogContent from '../components/alog/AlogContent';
 import AlogContentDefault from '../components/alog/AlogContentDefault';
 import AlogContentDefault2 from '../components/alog/AlogContentDefault2';
+import { useTranslation } from 'react-i18next';
 
 const langAlog = {
-    ko:{
         id: [ "Vivien"],
         contents:[
             {
+            id: 1,
             title:"우리 언제 만날 수 있을까? 정답을 알려줘",
             writer:"흰둥이",
             shadow: false,
@@ -21,6 +22,7 @@ const langAlog = {
             url:"http://www.naver.com"
             },
             {
+            id: 2,
             title:"우리 날 수 있을까? 정답을 알려줘",
             writer:"빨둥이",
             shadow: false,
@@ -33,6 +35,7 @@ const langAlog = {
         ],
         contents2:[
         {
+            id: 3,
             title:"우리 언제 만날 수 있을까? 정답을 알려줘",
             writer:"흰둥이",
             shadow: true,
@@ -43,6 +46,7 @@ const langAlog = {
             url:"http://www.naver.com"
         },
         {
+            id: 4,
             title:"우리 날 수 있을까? 정답을 알려줘",
             writer:"빨둥이",
             shadow: true,
@@ -53,36 +57,28 @@ const langAlog = {
             url:"http://www.naver.com"
         }
     
-    ],
-        //고정
-        subtitleText: "님의 알로그",
-        subtitleText2: "님의 달로그",
-        userShortCut: "유저 자체 제작 컨텐츠",
-        userShortCut2: "타 유저 스크랩 컨텐츠",
-        shortCut2: "알록달록 바로가기",
-    }
+    ]
 }
 function Alog () {
-    const id = langAlog.ko.id;
-    const contents = langAlog.ko.contents;
-    const contents2 = langAlog.ko.contents2;
-    const subtitleText = langAlog.ko.subtitleText;
-    const subtitleText2 = langAlog.ko.subtitleText2;
-    const userShortCut = langAlog.ko.userShortCut;
-    const userShortCut2 = langAlog.ko.userShortCut2;
-    const shortCut2 = langAlog.ko.shortCut2;
-    const direct = langAlog.ko.direct;
+    const { t } = useTranslation();
+    const id = langAlog.id;
+    const contents = langAlog.contents;
+    const contents2 = langAlog.contents2;
+    const userAlog = t("userAlog");
+    const userDalog = t("userDalog");
+    const userContent = t("ownContents");
+    const scrapContent = t("scrapContents");
+    const shortCut = t("shortcutToUser");
 
     return (
         <>
         <AlogOp>
             <AlogTitle 
             id={id} 
-            subText={subtitleText} 
-            userShortCut={userShortCut}
+            subText={userAlog} 
+            userShortCut={userContent}
             />
-            { contents.length === 0
-            ? 
+            { contents.length === 0 ? 
             <AlogBox>
                 <AlogContentDefault></AlogContentDefault>
             </AlogBox>
@@ -90,7 +86,8 @@ function Alog () {
             <AlogBox className="albox" count={contents.length}>
             {
                 contents.map( (content) => {
-                    return <AlogContent 
+                    return <AlogContent
+                        key={content.id} 
                         title={content.title} 
                         writer={content.writer} 
                         shadow={content.shadow}
@@ -106,16 +103,16 @@ function Alog () {
             }
             <AlogTitle 
             id={id} 
-            subText={subtitleText2} 
-            userShortCut={userShortCut2}
+            subText={userDalog} 
+            userShortCut={scrapContent}
             />
-            { contents2.length === 1 
-            ? 
+            { contents2.length === 1 ? 
             <AlogBox2>
                 <AlogContentDefault2></AlogContentDefault2>
                 {
                 contents2.map( (content) => {
-                    return <AlogContent 
+                    return <AlogContent
+                        key={content.id} 
                         title={content.title} 
                         writer={content.writer} 
                         shadow={content.shadow}
@@ -125,29 +122,30 @@ function Alog () {
                         backgroundColor={content.backgroundColor}
                         url={content.url}
                         />
-                } )
-            }
+                    })
+                }
             </AlogBox2> 
             :
             <AlogBox2 className="albox" >
-            {
-                contents2.map( (content) => {
-                    return <AlogContent 
-                        title={content.title} 
-                        writer={content.writer} 
-                        shadow={content.shadow}
-                        sticker={content.sticker}
-                        circle={content.circle}
-                        background={content.background}
-                        backgroundColor={content.backgroundColor}
-                        url={content.url}
-                        />
-                } )
-            }
+                {
+                contents2.map((content) => {
+                return <AlogContent
+                    key={content.id} 
+                    title={content.title} 
+                    writer={content.writer} 
+                    shadow={content.shadow}
+                    sticker={content.sticker}
+                    circle={content.circle}
+                    background={content.background}
+                    backgroundColor={content.backgroundColor}
+                    url={content.url}
+                    />
+                })
+                }
             </AlogBox2>
             }
         </AlogOp>
-        <Option To="/">{id}님의 {shortCut2}</Option>
+        <Option href="/">{id}{shortCut}</Option>
         </>
     );
 };
@@ -176,11 +174,11 @@ const AlogBox2 = styled.div`
     margin:0 auto;
 `;
 
-const Option = styled.div `
+const Option = styled.a`
+    text-decoration: none;
     margin:10px auto 20px;
-    width:auto; height:30px;
+    padding: 0.625rem 0.875rem;
     text-align:center;
-    line-height:30px;
     box-shadow:4px 4px 6px 0 rgba(0, 0, 0, 0.1), -4px -4px 6px rgba(255, 255, 255, 0.7);
     border-radius:5px;
     cursor:pointer;

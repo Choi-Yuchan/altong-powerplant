@@ -1,41 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-const langListNav = {
-    ko:{
-        listMenu: [
+function ListNav({match}) {
+    const { t } = useTranslation();
+    const listTitle = t("listTitle");
+
+    const listMenu = [
         {
             id:1,
-            name: "질문/답변",
-            href: '/'
+            name: listTitle[0],
+            href: `${match.path}`
         },
         {
             id:2,
-            name: "알록달록",
-            href: '/alog'
+            name: listTitle[1],
+            href: `${match.path}/alog`
         },
         {
             id:3,
-            name: "NEST",
-            href: '/nest'
+            name: listTitle[2],
+            href: `${match.path}/nest`
         },
         {
             id:4,
-            name: "활동",
-            href: '/activity'
+            name: listTitle[3],
+            href: `${match.path}/activity`
         }
-        ]
-    }
-}
-function ListNav() {
-    const listMenu = langListNav.ko.listMenu;
+    ];
     const [highlight, setHighlight] = useState(0);
     return (
         <NavGroup>
             {listMenu.map((list, index) => (
                 <ListEl 
-                    list={list} 
+                    list={list}
                     key={list.id} 
                     highlight={highlight} setHighlight={setHighlight}
                     selected={index}
@@ -45,19 +44,19 @@ function ListNav() {
     );
 }
 
-function ListEl(props) {
+function ListEl({list, highlight, setHighlight, selected}) {
     const [place, setPlace] = useState(false);
     useEffect(()=>{
-        if (props.highlight === props.selected) {
+        if (highlight === selected) {
             setPlace(true);
         } else {
             setPlace(false);
         }
-    }, [props.highlight]);
+    }, [highlight]);
 
     return (
-        <NavList place={place} onClick={()=>{props.setHighlight(props.selected);}}>
-            <Link to={props.list.href || '/'}>{props.list.name}</Link>
+        <NavList place={place} onClick={()=>{setHighlight(selected);}}>
+            <ListLabel to={list.href}>{list.name}</ListLabel>
         </NavList>
     );
 }
@@ -89,7 +88,7 @@ const NavList = styled.li`
         box-shadow:inset 3px 3px 3px #fff, inset -1px -1px 2px #fefefe; 
     }
     a {
-        color:${props => props.place ? '#fd0031' : '#707070'};
+        color:${ props => props.place ? '#fd0031' : '#707070'};
         text-decoration:none;
         display:block;
         transition:0.3s;
@@ -104,6 +103,7 @@ const NavList = styled.li`
     }
 `;
 
-
+const ListLabel = styled(Link)`
+`;
 
 export default ListNav;

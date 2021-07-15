@@ -6,6 +6,7 @@ import VisitorBox from './visitorBox/VisitorBox';
 import AlogMessage from './AlogMessage';
 import HunPopup from './HunPopup';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const Section = styled.section`
     width:100%;
@@ -136,19 +137,6 @@ const langProfile = {
             countTotal:2487,
         }],
         //고정
-        LV : [
-            "알천사",
-            "나비천사",
-            "미소천사",
-            "열혈천사",
-            "황금천사",
-            "수호천사",
-            "빛의천사",
-            "천사장",
-            "대천사",
-            "대천사장",
-            "알통폐인"
-        ],
         bgColor : [
             "#ffffff",
             "#ffffb5",
@@ -161,22 +149,18 @@ const langProfile = {
             "#e1bee7",
             "#ef9cfe",
             "url('/images/Card.png')"
-        ],
-        altText : [
-            "설정 아이콘",
-            "멘토 추가 아이콘",
-            "훈훈알 아이콘",
-            "쪽지 아이콘",
         ]
     },
 
 };
 
 const Profile = () => {
-    const grade = langProfile.ko.LV;
+    const { t } = useTranslation();
+
+    const grade = t("grade");
     const bgColor = langProfile.ko.bgColor;
     const userData = langProfile.ko.userData;
-    const altText = langProfile.ko.altText;
+    const altText = t("altText");
     const [close, setClose] = useState(false);
     const [hunAl,setHunAl] = useState(false);
     const [show, setShow] = useState(true);
@@ -268,7 +252,7 @@ const Profile = () => {
                 <ProfileMid>
                     <ProfileImg userImg={userData[0].profileImg}/>
                     <ContentsBox>
-                        <Grade>{grade[0]}</Grade>
+                        <Grade>{grade[1]}</Grade>
                         <UserBox>
                             <UserCountry src={process.env.PUBLIC_URL + `/images/nationalflag.png`}></UserCountry>
                             <UserID>{userData[0].id}</UserID>

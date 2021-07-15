@@ -4,15 +4,15 @@ import ActivityAnswer from './AcRight/ActivityAnswer';
 import ActivityNest from './AcRight/ActivityNest';
 import ActivityAlog from './AcRight/ActivityAlog';
 
-function ActivityRight (props) {
+function ActivityRight ({Ans, Rep, Nes, match}) {
 
     const [push, setPush] = useState(1);
 
     return (
         <Right>
-            <ActivityAnswer Ans={props.Ans} push = { push } setPush={setPush}></ActivityAnswer>
-            <ActivityAlog Rep={props.Rep} push = { push } setPush={setPush}></ActivityAlog>
-            <ActivityNest Nes={props.Nes} push = { push } setPush={setPush}></ActivityNest>
+            <ActivityAnswer Ans={Ans} push = { push } setPush={setPush} match={match}/>
+            <ActivityAlog Rep={Rep} push = { push } setPush={setPush} match={match}/>
+            <ActivityNest Nes={Nes} push = { push } setPush={setPush} match={match}/>
         </Right>
     )
 }
