@@ -58,18 +58,16 @@ function Title(props) {
     );
 };
 
-function TabContent(props){
-    if (props.name === 0){
-      return <DropList>{props.droplist[0]}<Triangle/></DropList>
-    } else if (props.name === 1){
-      return <DropList>{props.droplist[1]}<Triangle/></DropList>
-    } else if (props.name === 2){
-      return <DropList>{props.droplist[2]}<Triangle/></DropList>
-    } else if (props.name === 3){ 
-      return <DropList>{props.droplist[3]}<Triangle/></DropList>
-    } else { 
-        return <DropList>{props.droplist[0]}<Triangle/></DropList>
-      }
+function TabContent({name, droplist}){
+    if (name === 0){
+      return <DropList>{droplist[0]}<Triangle/></DropList>
+    } else if (name === 1){
+      return <DropList>{droplist[1]}<Triangle/></DropList>
+    } else if (name === 2){
+      return <DropList>{droplist[2]}<Triangle/></DropList>
+    } else if (name === 3){ 
+      return <DropList>{droplist[3]}<Triangle/></DropList>
+    }
 }
 
 export default Title;
@@ -88,6 +86,7 @@ const Top = styled.div`
     display:flex;
     width:100%;
     justify-content: space-between;
+    align-items: center;
 `;
 
 const Left = styled.h3`
@@ -98,7 +97,7 @@ const Left = styled.h3`
 
 const Right = styled.nav`
     display:flex;
-    width: 100px;
+    width: 105px;
     height:30px;
 
     align-items:center;
@@ -109,7 +108,7 @@ const Right = styled.nav`
 `;
 
 const DropdownBox = styled.ul`
-    width: 100px; height:30px;
+    width: 100%; 
     background-color:#F5F5F5;
     font-size:${props => props.long ? "0.5rem" : "0.75rem"};
     font-weight:bold;
@@ -128,6 +127,7 @@ const DropList = styled.li`
     justify-content:center;
     background-color:#F5F5F5;
     padding: 0.625rem 1rem;
+    white-space: nowrap;
 
     :hover{
         background-color:#bebebe;
@@ -139,7 +139,8 @@ const DropList = styled.li`
 `;
 
 const Triangle = styled.div`
-    margin-left:5px;
+    margin-top: 3px;
+    margin-left: 8px;
     border: 7px solid transparent;
     border-bottom-width:0;
     border-top-color:#FE607E;
