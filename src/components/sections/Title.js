@@ -99,7 +99,6 @@ const Right = styled.nav`
     display:flex;
     width: 105px;
     height:30px;
-
     align-items:center;
     justify-content:space-around;
     background-color:#F5F5F5;
