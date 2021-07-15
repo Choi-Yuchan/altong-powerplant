@@ -1,20 +1,17 @@
 /* eslint-disable */
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-const langAlogMessage ={
-    ko:{
-        //고정
-        titleText: "님에게 메시지 보내기",
-        cancelBtn:"취소",
-    }
-}
 function AlogMessage ({close, setClose, userData}) {
 
+    const { t } = useTranslation();
     const nickName = userData[0].id;
-    const titleText = langAlogMessage.ko.titleText;
-    const [sendBtn, setSendBtn] = useState('보내기');
-    const cancelBtn = langAlogMessage.ko.cancelBtn;
+    const toSendingMessage = t("toSendingMessage");
+    const sendBtn = t("send");
+    const cancelBtn = t("cancel");
+    const enterMessage = t("enterMessage");
+    const completeSending = t("completeSending");
 
     const [message, setMessage] = useState('');
     const handleChange = (e) => {
@@ -22,9 +19,9 @@ function AlogMessage ({close, setClose, userData}) {
     }
     const sendMessage = () => {
         if (message === '') {
-            alert('내용을 입력해 주세요.');
+            alert(enterMessage);
         } else {
-            alert('쪽지가 전송되었습니다!');
+            alert(completeSending);
             setMessage('');
             setClose(false);
         }
@@ -34,9 +31,9 @@ function AlogMessage ({close, setClose, userData}) {
         close &&
         <MessageBox onClick={()=>{setClose(false)}}>
             <Frame onClick={(e)=>{e.stopPropagation();}}>
-                <Title><span>{nickName}</span>{titleText}</Title>
+                <Title><span>{nickName}</span>{toSendingMessage}</Title>
                 <Form action="#">
-                <TxtArea value={message} onChange={(e)=>{handleChange(e)}}></TxtArea>
+                    <TxtArea value={message} onChange={(e)=>{handleChange(e)}}/>
                 </Form>
                 <ButtonFrame>
                     <Cancel onClick={ () => { setClose(false) } }>{cancelBtn}</Cancel>

@@ -1,19 +1,13 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-const langActivityProfit = {
-    ko:{
-        text:"총 수입",
-        al:"알",
-        exchange:"환전횟수",
-        time:"회"
-    }
-}
 function ActivityProfit (props) {
-    const profitText = langActivityProfit.ko.text;
-    const al = langActivityProfit.ko.al;
-    const exchange = langActivityProfit.ko.exchange;
-    const time = langActivityProfit.ko.time;
+    const { t } = useTranslation();
+    const profitText = t("totalRevenue");
+    const al = t("al");
+    const exchange = t("exchange");
+    const time = t("times");
 
     return (
         <Profit>
@@ -39,7 +33,7 @@ const Profit = styled.div`
 `;
 
 const Updown = styled.div `
-    height:50%; line-height:30.5px;
+    height:50%; 
     flex-basis:40%;
     text-align:left;
     margin-left:20px;

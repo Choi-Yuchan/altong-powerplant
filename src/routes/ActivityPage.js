@@ -2,97 +2,98 @@ import ActivityGraph from '../components/activity/ActivityGraph';
 import ActivityDivide from '../components/activity/ActivityDivide';
 import ActivityContents from '../components/activity/ActivityContents';
 import Num3Comma from '../components/function/Num3Comma';
+import { useTranslation } from 'react-i18next';
 
-const langActivityPage = {
-    ko:{
-        revenue: [
-            // x,color는 고정값
-            { 
-                x: "훈훈알",
-                y: 22,
-                color: "#fc6d89"
-            },
-            { 
-                x: "질문", 
-                y:3,
-                color: "#f6bec9"
-            },
-            { 
-                x: "답변", 
-                y:25,
-                color: "#ff9aad" 
-            },
-            { 
-                x: "기타",
-                y:50,
-                color: "#fd0031"
-            }
-        ],
-        expense: [
-            // x,color는 고정값
-            { 
-                x: "감사알",
-                y: 48,
-                color: "#98D0FB"
-            },
-            { 
-                x: "훈훈알(질문)", 
-                y: 25,
-                color: "#65BDF8"
-            },
-            { 
-                x: "훈훈알(답변)", 
-                y:24,
-                color: "#BADFFF" 
-            },
-            { 
-                x: "환전",
-                y:3,
-                color: "#DBEDFC"
-            }
-        ],
-        subject: [
-            //title,gun,title2는 고정값
-            {
-                id: 1,
-                title: "감사알 지급 답변",
-                count: "313",
-                gun: "건 / ",
-                title2: "감사알 지급율",
-                number: "20.3%"
-            },
-            {
-                id: 2,
-                title: "채택된 답변",
-                count: "578",
-                gun: "건 / ",
-                title2: "답변 채택율",
-                number: "78.6%"
-            },
-            {
-                id: 3,
-                title: "추천수익",
-                count: "1428579",
-                gun: " ",
-                title2: "알",
-                number: ""
-            }
-        ],
-        open: [
-            "120"
-        ],
-        reply:[
-            "108"
-        ],
-    }
-}
+
 
 const ActivityPage = () => {
-    const revenue = langActivityPage.ko.revenue;
-    const expense = langActivityPage.ko.expense;
-    const open = Num3Comma(langActivityPage.ko.open);
-    const reply = Num3Comma(langActivityPage.ko.reply);
-    const subject = langActivityPage.ko.subject;
+    const { t } = useTranslation();
+    const langActivityPage = {
+            revenue: [
+                // x,color는 고정값
+                { 
+                    x: t("warming"),
+                    y: 22,
+                    color: "#fc6d89"
+                },
+                { 
+                    x: t("question"), 
+                    y:3,
+                    color: "#f6bec9"
+                },
+                { 
+                    x: t("answer"), 
+                    y:25,
+                    color: "#ff9aad" 
+                },
+                { 
+                    x: t("etc"),
+                    y:50,
+                    color: "#fd0031"
+                }
+            ],
+            expense: [
+                // x,color는 고정값
+                { 
+                    x: t("gratitude"),
+                    y: 48,
+                    color: "#98D0FB"
+                },
+                { 
+                    x: t("warmingQuestion"), 
+                    y: 25,
+                    color: "#65BDF8"
+                },
+                { 
+                    x: t("warmingAnswer"), 
+                    y:24,
+                    color: "#BADFFF" 
+                },
+                { 
+                    x: t("exchange"),
+                    y:3,
+                    color: "#DBEDFC"
+                }
+            ],
+            subject: [
+                {
+                    id: 1,
+                    title: t("gratitudeAnswer"),
+                    count: "313",
+                    gun: `${t("times")} /`,
+                    title2: t("gratitudeRate"),
+                    number: "20.3%"
+                },
+                {
+                    id: 2,
+                    title: t("selectedAnswer"),
+                    count: "578",
+                    gun: `${t("times")} /`,
+                    title2: t("selectedRate"),
+                    number: "78.6%"
+                },
+                {
+                    id: 3,
+                    title: t("referral"),
+                    count: "1428579",
+                    gun: " ",
+                    title2: t("al"),
+                    number: ""
+                }
+            ],
+            open: [
+                "120"
+            ],
+            reply:[
+                "108"
+            ],
+    }
+
+    const revenue = langActivityPage.revenue;
+    const expense = langActivityPage.expense;
+    const open = Num3Comma(langActivityPage.open);
+    const reply = Num3Comma(langActivityPage.reply);
+    const subject = langActivityPage.subject;
 
    const revenueSort = () => { 
         revenue.sort(function(a, b){

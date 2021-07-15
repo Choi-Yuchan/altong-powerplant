@@ -1,39 +1,22 @@
-import { Route, Switch } from 'react-router-dom';
-import styled from 'styled-components';
-import TopNavi from './components/header/TopNavi';
-import Profile from './components/profile/Profile';
-import ListNav from './components/listNav/ListNav';
-import Alog from './routes/Alog';
-import Nest from './routes/Nest';
-import Activity from './routes/Activity';
-import Section from './routes/Section';
-import './style/font.css';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import PlantKR from './components/PlantKR';
+import PlantEN from './components/PlantEN';
+import PlantJA from './components/PlantJA';
+import PlantZH from './components/PlantZH';
+
 
 function App() {
 
   return (
-    <Wrap>
-      <TopNavi/>
-      <Profile/>
-      <ListNav/>
-      <Switch>
-        <Route exact path="/" component={Section}/>
-        <Route path="/alog" component={Alog}/>
-        <Route path="/nest" component={Nest}/>
-        <Route path="/activity" component={Activity}/>
-      </Switch>
-    </Wrap>
+      <BrowserRouter> 
+        <Route exact path="/" component={PlantKR}></Route>
+        <Switch>
+          <Route path="/en" component={PlantEN}></Route>
+          <Route path="/ja" component={PlantJA}></Route>
+          <Route path="/zh" component={PlantZH}></Route>
+        </Switch>
+      </BrowserRouter>
   );
 }
 
-const Wrap = styled.div`
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  max-width: 800px;
-  margin: 0 auto;
-  ::-webkit-scrollbar{
-    display:none;
-  }
-`;
 export default App;

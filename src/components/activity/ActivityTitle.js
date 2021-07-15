@@ -1,20 +1,13 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-const langActivityTitle = {
-    ko:{
-        //고정
-        titleText:"님의 통계",
-        queRank:"질문",
-        ansRank:"답변",
-        wu:"위",
-    }
-}
 function ActivityTitle ({id, question, answer, levelUp}) {
-    const titleText = langActivityTitle.ko.titleText;
-    const queRank = langActivityTitle.ko.queRank;
-    const ansRank = langActivityTitle.ko.ansRank;
-    const wu = langActivityTitle.ko.wu;
+    const { t } = useTranslation(); 
+    const titleText = t("userStatus");
+    const queRank = t("question");
+    const ansRank = t("answer");
+    const ranking = t("rank");
 
     return (
         <TitleOption>
@@ -23,8 +16,8 @@ function ActivityTitle ({id, question, answer, levelUp}) {
             </IDContainer>
             <Wrap>
             <Rank>
-                <span>{queRank} <span>{ question }</span>{wu}</span>
-                <Rank2>{ansRank} <span>{ answer}</span>{wu}</Rank2>
+                <span>{queRank} <span>{ question }</span>{ranking}</span>
+                <Rank2>{ansRank} <span>{ answer}</span>{ranking}</Rank2>
             </Rank>
             {/* 클릭 시 해당 계정의 승천정보로 이동 */}
             <LevelUpInfo href="http://altong.com">
@@ -39,9 +32,7 @@ const Wrap = styled.div`
     text-align:right;
 `;
 const LevelUpInfo = styled.a`
-    width:80px;
-    height:15px;
-    line-height: 1.2;
+    padding: 5px 8px;
     text-align:center;
     border-radius: 10px;
     background:#fafafa;

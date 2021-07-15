@@ -8,10 +8,10 @@ import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-      <BrowserRouter>
-      <Reset/>
-      <App />
-      </BrowserRouter>
+    <BrowserRouter>
+        <Reset/>
+        <App />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

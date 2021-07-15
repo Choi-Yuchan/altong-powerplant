@@ -7,13 +7,13 @@ import ActivityAlogPage from '../routes/ActivityAlogPage';
 import ActivityNestPage from '../routes/ActivityNestPage';
 import { Route } from 'react-router-dom';
 import Num3Comma from '../components/function/Num3Comma';
+import { useTranslation } from 'react-i18next';
 
 const langActivity = {
     ko:{
         id:["Vivien"],
         question:["4069"],
         answer:["1030"],
-        levelUp:"승천정보",
         grossProfit:["1000000"],
         exchangeTime:["3"],
         answerProfit:["876520"],
@@ -22,11 +22,12 @@ const langActivity = {
     }
 }
 
-function Activity () {
+function Activity ({match}) {
+    const { t } = useTranslation();
     const getID = langActivity.ko.id;
     const question = Num3Comma(langActivity.ko.question);
     const answer = Num3Comma(langActivity.ko.answer);
-    const levelUp = langActivity.ko.levelUp;
+    const levelUp = t("ascension");
     const answerProfit = Num3Comma(langActivity.ko.answerProfit);
     const alogProfit = Num3Comma(langActivity.ko.alogProfit);
     const grossProfit = Num3Comma(langActivity.ko.grossProfit);
@@ -42,16 +43,17 @@ function Activity () {
             levelUp = {levelUp}
             />
             <ActivityTotal
+            match = {match}
             gprofit = {grossProfit}
             ansprofit = {answerProfit}
             alogprofit = {alogProfit}
             nestprofit = {nestProfit}
             exchange ={exchangeTime}
             />
-            <Route exact path="/activity" component={ActivityPage}></Route>
-            <Route path = "/activity/alog" component={ActivityAlogPage}></Route>
-            <Route onClick = {(e) => {e.preventDefault(); e.stopPropagation();}
-            }path = "/activity/nest" component={ActivityNestPage}></Route>
+            <Route exact path={`${match.path}`} component={ActivityPage}/>
+            <Route path = {`${match.path}/alog`} component={ActivityAlogPage}/>
+            <Route onClick = {(e) => {e.preventDefault(); e.stopPropagation();}}
+            path = {`${match.path}/nest`} component={ActivityNestPage}/>
         </Active>
     );
 };

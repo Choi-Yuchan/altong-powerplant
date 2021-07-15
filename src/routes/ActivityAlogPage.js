@@ -2,44 +2,46 @@ import ActivityGraph from '../components/activity/ActivityGraph';
 import ActivityDivide from '../components/activity/ActivityDivide';
 import ActivityContents from '../components/activity/ActivityContents';
 import Num3Comma from '../components/function/Num3Comma';
+import { useTranslation } from 'react-i18next';
 
-const langActivityAlogPage = {
-    ko:{
+const ActivityAlogPage = () => {
+    const { t } = useTranslation(); 
+    const langActivityAlogPage = {
         revenue: [
             { 
-                x: "퍼가기",
+                x: t("scrap"),
                 y: 25,
                 color: "#fc6d89"
             },
             { 
-                x: "훈훈알", 
+                x: t("warming"), 
                 y:48,
                 color: "#fd0031"
             },
             { 
-                x: "열람", 
+                x: t("view"), 
                 y:24,
                 color: "#ff9aad" 
             },
             { 
-                x: "기타",
+                x: t("etc"),
                 y:3,
                 color: "#f6bec9"
             }
         ],
         expense: [
             { 
-                x: "훈훈알",
+                x: t("warming"),
                 y: 25,
                 color: "#98D0FB"
             },
             { 
-                x: "퍼가기", 
+                x: t("scrap"), 
                 y:50,
                 color: "#75BDF8"
             },
             { 
-                x: "기타", 
+                x: t("etc"), 
                 y:25,
                 color: "#B8DFFF" 
             },
@@ -47,30 +49,30 @@ const langActivityAlogPage = {
         subject: [
             {
                 id: 1,
-                title: "공유된 게시글",
+                title: t("sharedContent"),
                 count: "298",
-                gun: "건 / ",
-                title2: "합계 ",
+                gun: `${t("times")} /`,
+                title2: t("total"),
                 number: "1580279",
-                al:"알"
+                al: t("al")
                 
             },
             {
                 id: 2,
-                title: "훈훈알",
+                title: t("warming"),
                 count: "590600",
                 gun: "",
-                al:"알",
+                al: t("al"),
                 title2: "",
                 number: ""
             },
             {
                 id: 3,
-                title: "추천수익",
+                title: t("referral"),
                 count: "1428579",
                 gun: "",
                 title2: "",
-                al:"알",
+                al: t("al"),
                 number: ""
             }
         ],
@@ -80,14 +82,12 @@ const langActivityAlogPage = {
         reply:[
             "1574"
         ],
-    }
 }
-const ActivityAlogPage = () => {
-    const alogRevenue = langActivityAlogPage.ko.revenue;
-    const alogExpense = langActivityAlogPage.ko.expense;
-    const open = Num3Comma(langActivityAlogPage.ko.open);
-    const reply = Num3Comma(langActivityAlogPage.ko.reply);
-    const subject = langActivityAlogPage.ko.subject;
+    const alogRevenue = langActivityAlogPage.revenue;
+    const alogExpense = langActivityAlogPage.expense;
+    const open = Num3Comma(langActivityAlogPage.open);
+    const reply = Num3Comma(langActivityAlogPage.reply);
+    const subject = langActivityAlogPage.subject;
 
     return(
         <>

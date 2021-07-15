@@ -1,28 +1,20 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import Num3Comma from '../function/Num3Comma';    
 
-const langHunPopup = {
-    ko:{
-        //고정
-        title:"훈훈알 증정하기",
-        text:"금일 증정 가능하신 훈훈알은 총",
-        textEnd: "알 입니다.",
-        al:"알",
-        cancel:"취소",
-        confirm:"확인",
-    }
-}
 function HunPopup(props) {
-    const title = langHunPopup.ko.title;
-    const text = langHunPopup.ko.text;
-    const huntext = text.slice(0,14);
-    const total = text.slice(15);
+    const { t } = useTranslation();
+    const giveWarmingAl = t("giveWarmingAl");
+    const availableAl = t("availableAl");
+    const huntext = availableAl.slice(0,15);
+    const total = availableAl.slice(15,17);
     const hunhunal = Num3Comma(props.myAlmoney);
-    const textEnd = langHunPopup.ko.textEnd;
-    const al = langHunPopup.ko.al;
-    const cancel = langHunPopup.ko.cancel;
-    const confirm = langHunPopup.ko.confirm;
+    const textEnd = availableAl.slice(17);
+    const al = t("al"); 
+    const cancel = t("cancel");
+    const confirm = t("confirm");
+    const warmingAlert = t("warmingAlert");
 
     //증정한 알머니 value 값
     const [presentAl, setPresentAl] = useState('');
@@ -39,14 +31,14 @@ function HunPopup(props) {
         if ( props.myAlmoney > 0) {
             props.setMyAlomoney(props.myAlmoney - presentAl);
         } else {
-            alert("금일 증정 가능하신 훈훈알을 전부 쓰셨습니다.");
+            alert(warmingAlert);
         }
     }
     return (
         props.hunAl &&
         <HunPopupWrap onClick={() => {props.setHunAl(false)}}>
             <HunPopupBox onClick={(e)=> {e.stopPropagation();}}>
-                <HunTitle>{title}</HunTitle>
+                <HunTitle>{giveWarmingAl}</HunTitle>
                 <HunText>{huntext}<br/>{total} <HunSpan>{hunhunal}</HunSpan>{textEnd}</HunText>
                 <HunInputBox>
                     <HunInput type="number" placeholder="300~10,000" step="100" onChange={onChange} value={presentAl}></HunInput>
