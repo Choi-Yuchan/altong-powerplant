@@ -1,5 +1,78 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
+
+function Title(props) {
+    const { t } = useTranslation();
+    const [isShow, setShow] = useState(false);
+    const showMenu = (e) => {
+        e.preventDefault();
+        setShow(!isShow);
+    }
+
+    const droplist = t("dropList");
+
+    function sortLook1 (){ 
+        props.con.sort(function(a, b){
+        return b.look - a.look;
+    });
+    }
+    function sortValue1 (){ 
+        props.con.sort(function(a, b){
+        return b.value - a.value;
+    });
+    }
+    function sortHun1 (){ 
+        props.con.sort(function(a, b){
+        return b.hun - a.hun;
+    });
+    }
+    function sortHour1 (){ 
+        props.con.sort(function(a, b){
+        return b.hour - a.hour;
+    });
+    }
+
+    const [name, changeName] = useState(0);
+
+    return (
+        <TopDiv>
+            <Top>
+                <Left>{props.title}</Left>
+                {/* 해당 항목을 선택하면 그 항목이 선택된 것으로 보여야 합니다.*/}
+                <Right onClick={showMenu}>
+                    {isShow ? 
+                    <DropdownBox>
+                        <DropList onClick={ ()=>{ changeName(0); props.setView(0); sortLook1();} }>{droplist[0]}</DropList>
+                        <DropList onClick={ ()=>{ changeName(1); props.setView(1); sortHour1();} }>{droplist[1]}</DropList>
+                        <DropList onClick={ ()=>{ changeName(2); props.setView(2); sortHun1();} }>{droplist[2]}</DropList>
+                        <DropList onClick={ ()=>{ changeName(3); props.setView(3); sortValue1();} }>{droplist[3]}</DropList>
+                    </DropdownBox> : 
+                    <ShowBox>
+                        <TabContent name = { name } droplist = { droplist }/>
+                    </ShowBox>
+                    }
+                </Right>
+          </Top>
+      </TopDiv>
+    );
+};
+
+function TabContent(props){
+    if (props.name === 0){
+      return <DropList>{props.droplist[0]}<Triangle/></DropList>
+    } else if (props.name === 1){
+      return <DropList>{props.droplist[1]}<Triangle/></DropList>
+    } else if (props.name === 2){
+      return <DropList>{props.droplist[2]}<Triangle/></DropList>
+    } else if (props.name === 3){ 
+      return <DropList>{props.droplist[3]}<Triangle/></DropList>
+    } else { 
+        return <DropList>{props.droplist[0]}<Triangle/></DropList>
+      }
+}
+
+export default Title;
 
 const TopDiv = styled.div`
     width: 90%;
@@ -38,7 +111,7 @@ const Right = styled.nav`
 const DropdownBox = styled.ul`
     width: 100px; height:30px;
     background-color:#F5F5F5;
-    font-size:0.75rem;
+    font-size:${props => props.long ? "0.5rem" : "0.75rem"};
     font-weight:bold;
     border:none;
     z-index:2;
@@ -58,6 +131,10 @@ const DropList = styled.li`
 
     :hover{
         background-color:#bebebe;
+        color: #fefefe;
+    }
+    :nth-child(3),:nth-child(4){
+        font-size: 0.5rem;
     }
 `;
 
@@ -67,80 +144,3 @@ const Triangle = styled.div`
     border-bottom-width:0;
     border-top-color:#FE607E;
 `;
-
-const langTitle = {
-    ko:{
-        droplist: ["조회순","최신순","훈훈알순","감사알순"],
-    }
-}
-
-function Title(props) {
-    const [isShow, setShow] = useState(false);
-    const showMenu = (e) => {
-        e.preventDefault();
-        setShow(!isShow);
-    }
-
-    const droplist = langTitle.ko.droplist;
-
-    function sortLook1 (){ 
-        props.con.sort(function(a, b){
-        return b.look - a.look;
-    });
-    }
-    function sortValue1 (){ 
-        props.con.sort(function(a, b){
-        return b.value - a.value;
-    });
-    }
-    function sortHun1 (){ 
-        props.con.sort(function(a, b){
-        return b.hun - a.hun;
-    });
-    }
-    function sortHour1 (){ 
-        props.con.sort(function(a, b){
-        return b.hour - a.hour;
-    });
-    }
-
-    const [name, changeName] = useState(0);
-
-    return (
-        <TopDiv>
-            <Top>
-                <Left>{props.title}</Left>
-                {/* 해당 항목을 선택하면 그 항목이 선택된 것으로 보여야 합니다.*/}
-                <Right onClick={showMenu}>
-                    {isShow ? 
-                    <DropdownBox>
-                        <DropList onClick={ ()=>{ changeName(0); props.setView(0); sortLook1();  } }>{droplist[0]}</DropList>
-                        <DropList onClick={ ()=>{ changeName(1); props.setView(1); sortHour1(); } }>{droplist[1]}</DropList>
-                        <DropList onClick={ ()=>{ changeName(2); props.setView(2); sortHun1(); } }>{droplist[2]}</DropList>
-                        <DropList onClick={ ()=>{ changeName(3); props.setView(3); sortValue1();  } }>{droplist[3]}</DropList>
-                    </DropdownBox> : 
-                    <ShowBox>
-                        <TabContent name = {name} droplist = { droplist }/>
-                    </ShowBox>
-                    }
-                </Right>
-          </Top>
-      </TopDiv>
-    );
-};
-
-function TabContent(props){
-    if (props.name === 0){
-      return <DropList>{props.droplist[0]}<Triangle/></DropList>
-    } else if (props.name === 1){
-      return <DropList>{props.droplist[1]}<Triangle/></DropList>
-    } else if (props.name === 2){
-      return <DropList>{props.droplist[2]}<Triangle/></DropList>
-    } else if (props.name === 3){ 
-      return <DropList>{props.droplist[3]}<Triangle/></DropList>
-    } else { 
-        return <DropList>{props.droplist[0]}<Triangle/></DropList>
-      }
-}
-
-export default Title;

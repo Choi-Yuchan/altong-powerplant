@@ -1,22 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-const langActivityAnswer = {
-    ko:{
-        //고정
-        text:"질문 / 답변",
-        al:"알"
-    }
-}
+function ActivityAnswer ({Ans, push, setPush, match}) {
+    const { t } = useTranslation();
+    const text = t("listTitle");
+    const al = t("al");
 
-function ActivityAnswer (props) {
-    const text = langActivityAnswer.ko.text;
-    const al = langActivityAnswer.ko.al;
     return (
-        <Answer to="/activity">
-            <AnswerL push = {props.push} onClick={ () => { props.setPush(1)} }>{text}</AnswerL>
-            <AnswerR push = {props.push} onClick={ () => { props.setPush(1)}}><Highlight>{ props.Ans }</Highlight> {al}</AnswerR>
+        <Answer to={`${match.path}`}>
+            <AnswerL push = {push} onClick={ () => { setPush(1)} }>{text[0]}</AnswerL>
+            <AnswerR push = {push} onClick={ () => { setPush(1)}}><Highlight>{ Ans }</Highlight> {al}</AnswerR>
         </Answer>
     )
     

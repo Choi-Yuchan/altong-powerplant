@@ -2,13 +2,7 @@ import React from 'react';
 import NestContain from '../components/nest/NestContain';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
-const langNest = {
-  ko:{
-    //고정
-    guide:"지금은 서비스 준비중입니다.",
-  }
-}
+import { useTranslation } from 'react-i18next';
 
 const nestList = [
     {
@@ -88,11 +82,20 @@ const nestList = [
   
   
   function Nest() {
-    const guideText = langNest.ko.guide;
+    const { t } = useTranslation();
     
+    const uHaveTo = () => {
+      if(window.confirm("You did a good job!")){
+        console.log("this project won't be released. Run!");
+      } else {
+        alert("you cancel everything")
+      }
+    }
+        
     return (
       <NestWrap>
-          <Mask>{guideText}</Mask>
+          <Mask>{t("guideSentence")}</Mask>
+          <ToNewbie onClick={uHaveTo}></ToNewbie>
           {/* <NestContain open={true} nestList={nestList} />
           <NestContain open={false} nestList={nestList2} />
           <NestLink to="/">NEST 홈으로 바로가기</NestLink> */}
@@ -129,5 +132,14 @@ const nestList = [
 
 `;
   
+  const ToNewbie = styled.button`
+    background: #fefefe;
+    outline: none;
+    border: none;
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+  `;
+   
   export default Nest;
   

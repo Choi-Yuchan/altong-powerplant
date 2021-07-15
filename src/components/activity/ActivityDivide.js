@@ -1,19 +1,21 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 function ActivityDivide ({ open, reply }) {
+    const { t } = useTranslation();
 
     return (
         <Total>
             <Open>
-                <Op>열람</Op>
+                <Op>{t("view")}</Op>
                 <Line></Line>
-                <Count>{open}건</Count>
+                <Count>{open}{t("times")}</Count>
             </Open>
             <Reply>
-                <Op>댓글</Op>
+                <Op>{t("comments")}</Op>
                 <Line></Line>
-                <Count><Highlight href="http://www.altong.com">{reply}</Highlight>건</Count>
+                <Count><Highlight href="http://www.altong.com">{reply}</Highlight>{t("times")}</Count>
             </Reply>
         </Total>
     );

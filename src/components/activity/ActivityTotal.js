@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import ActivityProfit from './AcTotal/ActivityProfit';
 import ActivityRight from './AcTotal/ActivityRight';
 
-function ActivityTotal ({gprofit, ansprofit, alogprofit, nestprofit, exchange}) {
+function ActivityTotal ({gprofit, ansprofit, alogprofit, nestprofit, exchange, match}) {
 
     return (
         <Total>
-            <ActivityProfit Pro={gprofit} ex={exchange}></ActivityProfit>
+            <ActivityProfit Pro={gprofit} ex={exchange}/>
             <Line></Line>
-            <ActivityRight Ans={ansprofit} Rep={alogprofit} Nes={nestprofit} ></ActivityRight>
+            <ActivityRight Ans={ansprofit} Rep={alogprofit} Nes={nestprofit} match={match}/>
         </Total>
     );
 };

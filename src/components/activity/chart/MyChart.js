@@ -1,9 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { VictoryPie } from "victory";
 import ChartData from './ChartData';
 
 function MyChart(props) {
+    const { t } = useTranslation();
 
     return (
         <ChartDiv>
@@ -17,7 +19,7 @@ function MyChart(props) {
                     data={props.data}
                     style={{ labels: {fontSize:0, fill: "transparent"}}}
                 />    
-                <ChartLabel>{props.title===true?"수익":"지출"}</ChartLabel>
+                <ChartLabel>{props.title===true ? `${t("income")}`:`${t("expenses")}`}</ChartLabel>
             </ChartBox>
             <ChartData data={props.data}></ChartData>
         </ChartDiv>
