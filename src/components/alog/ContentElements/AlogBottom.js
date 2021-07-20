@@ -63,7 +63,7 @@ const ListReplyIcon = styled.img`
 const Language = styled.img`
     width:20px; height:20px;
     position:absolute;
-    right:5px; top:5px;
+    right:5px; top:-5px;
     cursor:pointer;
     z-index:4;
 `;
