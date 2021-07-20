@@ -14,14 +14,14 @@ function ShowShadow(props){
 function AlogContents (props) {
     return (
         <AlogConOption>
-            <ShowShadow shadow={props.shadow} ></ShowShadow>
+            <ShowShadow shadow={props.shadow} />
             <AlogConOptionIn title={props.title} writer={props.writer} circle={props.circle} sticker={props.sticker} background={props.background} backgroundColor={props.backgroundColor}/>
         </AlogConOption>
     );
 };
 
 const AlogConOption = styled.div`
-    width:100px;
+    width:120px;
     height:180px;
     background:#fff;
     display:flex;
@@ -40,16 +40,10 @@ const AlogConOption = styled.div`
         -4px -4px 10px rgba(255,255,255,0.7) inset;
     }
 
-
     @media (min-width:400px){
-        width:130px;
+        width:150px;
         height:220px;
     }
-    @media (min-width:500px){
-        width:160px;
-        height:220px;
-    }
-
     @media (min-width:600px){
         width:200px;
         height:240px;

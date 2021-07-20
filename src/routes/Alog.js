@@ -162,16 +162,24 @@ const AlogBox = styled.div`
     justify-content:space-between;
     align-items:center;
     flex-wrap:wrap;
-    width:70%;
+    width:80%;
     margin:0 auto;
+
+    @media (min-width: 480px){
+        justify-content: space-around;
+    }
 `;
 const AlogBox2 = styled.div`
     display: flex;
     align-items: center;
     justify-content:space-between;
     flex-wrap: wrap;
-    width:70%;
+    width:80%;
     margin:0 auto;
+
+    @media (min-width: 480px){
+        justify-content: space-around;
+    }
 `;
 
 const Option = styled.a`
