@@ -19,25 +19,34 @@ function ActivityAnswer ({Ans, push, setPush, match}) {
 
 const Answer = styled(Link)`
     text-decoration:none;
-    width:100%; height:50%;
-    line-height:31px;
+    width:100%; 
+    height:50%;
+    padding: 0.5em 0;
     display:flex;
+    align-items: center;
 `;
 
-const AnswerL = styled.div`
-    font-size:12px;
+const AnswerL = styled.p`
+    font-size:0.5rem;
     color:${ props => props.push === 1 ? "#fd0031" : "#707070" };
-    font-weight:bold;
-    text-align:center;
-    flex-basis:45%;
-    margin-left:15px;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    flex-basis: 45%;
+    padding: 0.625em 0.5rem;
+    margin-left: 7px;
     background-color:${ props => props.push === 1 ? "#fefefe" : "#fefefe" };
     border-radius: 10px;
     box-shadow:${ props => props.push === 1 ? "rgba(0, 0, 0, 0.3) 3px 3px 10px inset" : "none" };
+
+    @media (min-width:480px){
+        font-size: 0.75rem;
+        margin-left: 15px;
+    }
 `;
 
-const AnswerR = styled.div`
-    font-size:12px;
+const AnswerR = styled.p`
+    font-size: 0.5rem;
     color:#707070;
     font-weight:bold;
     text-align:right;
@@ -45,10 +54,11 @@ const AnswerR = styled.div`
     flex-basis:55%;
     box-sizing:border-box;
     
-    @media all and (min-width:400px){
+    @media all and (min-width:480px){
+        font-size: 0.75rem;
         margin-right:30px;
     }
-    @media all and (min-width:650px){
+    @media all and (min-width:640px){
         margin-right:45px;
     }
 `;

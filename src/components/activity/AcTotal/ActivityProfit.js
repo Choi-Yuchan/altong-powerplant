@@ -23,7 +23,6 @@ const Wrap = styled.div`
     width:90%;
 `;
 const Profit = styled.div`
-    font-size:13px;
     color:#707070;
     font-weight:bold;
     width:50%;
@@ -32,24 +31,33 @@ const Profit = styled.div`
     justify-content: center;
 `;
 
-const Updown = styled.div `
+const Updown = styled.p `
+    padding: 0.5em 0;
     height:50%; 
     flex-basis:40%;
     text-align:left;
     margin-left:20px;
+    font-size: 0.5rem;
 
     @media all and (min-width:400px){
+        font-size: 0.75rem;
+        padding: 0.625em 0;
         margin-left:30px;
         text-align:center;
     }
 
-    @media all and (min-width:800px){
+    @media all and (min-width:760px){
         margin-left:50px;
     }
 `;
-const Time = styled.div`
+const Time = styled.p`
     flex-basis:60%;
     text-align:right;
+    font-size: 0.5rem;
+
+    @media (min-width: 400px){
+        font-size: 0.75rem;
+    }
 `;
 
 
