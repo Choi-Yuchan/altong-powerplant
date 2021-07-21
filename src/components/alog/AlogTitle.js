@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-function AlogTitle ({id, subText, userShortCut, shortCut, direct}) {
+function AlogTitle ({id, subText, userShortCut, shortCut}) {
 
     return (
         <AlogHeader>
