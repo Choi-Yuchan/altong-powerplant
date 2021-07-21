@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import Num3Comma from '../function/Num3Comma';
 
     function ActivityContents ({title, count, gun, title2, number, al}) {
-            const refinedCount = Num3Comma(count);
-            const refinedNumber = Num3Comma(number);
+        const refinedCount = Num3Comma(count);
+        const refinedNumber = Num3Comma(number);
 
-            return(
-                <Total>
+        return(
+            <Total>
                 <ActivityConL>
                     {title}
                 </ActivityConL>
@@ -20,7 +20,7 @@ import Num3Comma from '../function/Num3Comma';
                     {al}
                 </ActivityConR>
             </Total>
-            )      
+        )      
     };
 
 const Total = styled.div`
@@ -46,15 +46,19 @@ const Line = styled.div`
     transform:translateY(-50%);
 `;
 const ActivityConL = styled.div`
-     width:40%; height:100%;
+     width:40%; 
+     height:100%;
      padding:1rem 0.2rem; 
      text-align:center;
      color:#707070; 
-     font-size:0.75rem;
-
-     
+     font-size:0.625rem;
+    
     @media (min-width: 360px){
         padding:1rem;
+    }
+
+    @media(min-width: 400px){
+        font-size: 0.75rem;
     }
 `;
 

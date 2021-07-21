@@ -6,7 +6,6 @@ function ChartList(props) {
         <ChartListDiv>
             <ChartListColor bgColor={props.data.color}></ChartListColor>
             <ChartListName>{props.data.x} {props.data.y}%</ChartListName>
-            {/* <ChartListNumber></ChartListNumber> */}
         </ChartListDiv>
     );
 }
@@ -15,13 +14,11 @@ const ChartListDiv = styled.div`
     display:flex;
     align-items:center;
     margin:2px;
-    flex-wrap: wrap;
+    width: 100%;
 
     @media (min-width: 480px){
         margin-bottom: 0.625rem;
     }
-
-
 `;
 
 const ChartListColor = styled.span`
@@ -35,17 +32,10 @@ const ChartListColor = styled.span`
 const ChartListName = styled.span`
     font-size:0.2em;
     letter-spacing:-0.5px;
-    width:55px;
-    @media (min-width:360px){
+
+    @media (min-width:480px){
         font-size: 0.5em;
-        width:auto;
     }
 `;
-// const ChartListNumber = styled.span`
-//     display:block;
-//     font-size:0.5rem;
-//     letter-spacing:-0.5px;
-//     margin-left:2px;
-// `;
 
 export default ChartList;

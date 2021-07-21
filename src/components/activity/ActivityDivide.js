@@ -40,10 +40,14 @@ const Open = styled.div`
     font-weight:bold;
     color:#707070;
     border-radius:5px;
-    font-size:12px;
+    font-size: 10px;
     box-shadow:4px 4px 6px 0 rgba(0, 0, 0, 0.1), -4px -4px 6px rgba(255, 255, 255, 0.7);
     display:flex;
     position:relative;
+
+    @media (min-width: 400px){
+        font-size: 0.75rem;
+    }
 `;
 const Reply = styled(Open)`
 `;
@@ -61,10 +65,12 @@ const Count = styled.div`
 `;
 
 const Line = styled.div`
-    width:1px; height:30%;
+    width:1px; 
+    height:30%;
     background:#707070;
     position:absolute;
-    left:50%; top:50%;
+    left:50%; 
+    top:50%;
     transform:translateY(-50%);
 `;
 
