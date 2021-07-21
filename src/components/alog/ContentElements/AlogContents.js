@@ -3,18 +3,10 @@ import styled from 'styled-components';
 
 import AlogConOptionIn from './AlogConOptionIn';
 
-function ShowShadow(props){
-    if(props.shadow === true){
-        return <Shadow href={props.href}></Shadow>
-    }
-    return <></>
-    
-}
-
 function AlogContents (props) {
     return (
         <AlogConOption>
-            <ShowShadow shadow={props.shadow} />
+            {props.shadow === true ? <Shadow href={props.href}></Shadow> : null}
             <AlogConOptionIn title={props.title} writer={props.writer} circle={props.circle} sticker={props.sticker} background={props.background} backgroundColor={props.backgroundColor}/>
         </AlogConOption>
     );

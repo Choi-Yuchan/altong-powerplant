@@ -95,7 +95,7 @@ function Section () {
                 <>
                 {
                 con1.map(con1 => {
-                    return <Box con={ con1 } time={t("checkTime")}></Box>
+                    return <Box con={ con1 } key = {con1.value} time={t("checkTime")}></Box>
                     })
                 }
                 <BoxDiv>
@@ -105,7 +105,7 @@ function Section () {
                 :
                 <Frame>
                 {con1.map(con1 => {
-                    return <Box con={ con1 } time={t("checkTime")}></Box>
+                    return <Box con={ con1 } key = {con1.value} time={t("checkTime")}></Box>
                     })
                 }
                 </Frame>
@@ -115,7 +115,7 @@ function Section () {
             { con2.length === 0 || con2.length === 1 ?
                 <>
                     {con2.map(con2 => {
-                        return <Box con={ con2 } time={t("checkTime")} ></Box>
+                        return <Box con={ con2 } key={ con2.value }time={t("checkTime")} ></Box>
                         })
                     }
                     <BoxDiv>
@@ -125,7 +125,7 @@ function Section () {
                 :
                 <Frame>
                 {con2.map(con2 => {
-                return <Box con={ con2 } time={t("checkTime")}></Box>}
+                return <Box con={ con2 } key={con2.value} time={t("checkTime")}></Box>}
                 )}
                 </Frame>
             }

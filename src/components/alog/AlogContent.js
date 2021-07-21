@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import AlogContents from './ContentElements/AlogContents';
-import { Link } from 'react-router-dom';
-
 
 function AlogContent ({ title, writer, shadow, sticker, circle, background, backgroundColor,url }) {
     
