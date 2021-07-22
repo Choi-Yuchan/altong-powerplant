@@ -6,7 +6,7 @@ function ActivityNest (props) {
     return (
         <Answer to="/activity/nest">
             <AnswerL push = {props.push} onClick={ () => { props.setPush(3)}}>NEST</AnswerL>
-            <AnswerR push = {props.push} onClick={ () => { props.setPush(3)}}><Highlight>{ props.Nes }</Highlight> 알</AnswerR>
+            <AnswerR push = {props.push} onClick={ () => { props.setPush(3)}}>{ props.Nes } 알</AnswerR>
         </Answer>
     )
 }
@@ -46,10 +46,6 @@ const AnswerR = styled.div`
     @media all and (min-width:650px){
         margin-right:45px;
     }
-`;
-
-const Highlight = styled.span`
-    color: #fd0031;
 `;
 
 export default ActivityNest;

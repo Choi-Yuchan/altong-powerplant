@@ -11,7 +11,7 @@ function ActivityAlog ({match, Rep, push, setPush}) {
     return (
         <Answer to={`${match.path}/alog`}>
             <AnswerL push = {push} onClick={ () => { setPush(2)}}>{text[1]}</AnswerL>
-            <AnswerR push = {push} onClick={ () => { setPush(2)}}><Highlight>{ Rep }</Highlight> {al}</AnswerR>
+            <AnswerR push = {push} onClick={ () => { setPush(2)}}>{ Rep }{al}</AnswerR>
         </Answer>
     )
 }
@@ -59,10 +59,6 @@ const AnswerR = styled.p`
     @media all and (min-width:640px){
         margin-right:45px;
     }
-`;
-
-const Highlight = styled.span`
-    color: #fd0031;
 `;
 
 export default ActivityAlog;

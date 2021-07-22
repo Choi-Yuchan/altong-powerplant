@@ -11,7 +11,7 @@ function ActivityAnswer ({Ans, push, setPush, match}) {
     return (
         <Answer to={`${match.path}`}>
             <AnswerL push = {push} onClick={ () => { setPush(1)} }>{text[0]}</AnswerL>
-            <AnswerR push = {push} onClick={ () => { setPush(1)}}><Highlight>{ Ans }</Highlight> {al}</AnswerR>
+            <AnswerR push = {push} onClick={ () => { setPush(1)}}>{ Ans }{al}</AnswerR>
         </Answer>
     )
     
@@ -61,10 +61,6 @@ const AnswerR = styled.p`
     @media all and (min-width:640px){
         margin-right:45px;
     }
-`;
-
-const Highlight = styled.span`
-    color: #fd0031;
 `;
 
 export default ActivityAnswer;

@@ -15,7 +15,7 @@ function ActivityDivide ({ open, reply }) {
             <Reply>
                 <Op>{t("comments")}</Op>
                 <Line></Line>
-                <Count><Highlight href="http://www.altong.com">{reply}</Highlight>{t("times")}</Count>
+                <Count>{reply}{t("times")}</Count>
             </Reply>
         </Total>
     );
@@ -74,8 +74,4 @@ const Line = styled.div`
     transform:translateY(-50%);
 `;
 
-const Highlight = styled.a`
-    color: #fd0031;
-    text-decoration:none;
-`;
 export default ActivityDivide;
