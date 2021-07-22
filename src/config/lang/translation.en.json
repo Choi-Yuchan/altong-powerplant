@@ -7,7 +7,7 @@
     "cancel" : "Cancel",
     "confirm" : "Confirm",
     "warmingAlert" : "You have used all Warming Al available for today!",
-    "toSendingMessage" : "is the recipient",
+    "toSendingMessage" : " is the recipient",
     "send" : "Send",
     "enterMessage" : "Please enter the content!",
     "completeSending" : "Your message has been sent!",

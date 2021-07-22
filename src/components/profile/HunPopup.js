@@ -7,10 +7,7 @@ function HunPopup(props) {
     const { t } = useTranslation();
     const giveWarmingAl = t("giveWarmingAl");
     const availableAl = t("availableAl");
-    const huntext = availableAl.slice(0,15);
-    const total = availableAl.slice(15,17);
     const hunhunal = Num3Comma(props.myAlmoney);
-    const textEnd = availableAl.slice(17);
     const al = t("al"); 
     const cancel = t("cancel");
     const confirm = t("confirm");
@@ -39,7 +36,7 @@ function HunPopup(props) {
         <HunPopupWrap onClick={() => {props.setHunAl(false)}}>
             <HunPopupBox onClick={(e)=> {e.stopPropagation();}}>
                 <HunTitle>{giveWarmingAl}</HunTitle>
-                <HunText>{huntext}<br/>{total} <HunSpan>{hunhunal}</HunSpan>{textEnd}</HunText>
+                <HunText>{availableAl} <HunSpan>{hunhunal}</HunSpan></HunText>
                 <HunInputBox>
                     <HunInput type="number" placeholder="300~10,000" step="100" onChange={onChange} value={presentAl}></HunInput>
                     <HunInputSpan>{al}</HunInputSpan>
